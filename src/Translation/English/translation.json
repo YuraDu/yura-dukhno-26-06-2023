@@ -1,0 +1,9 @@
+{
+  "main": "Main",
+  "game": "Game",
+  "leaders": "Leaders",
+  "en": "English",
+  "ru": "Russian",
+  "time-left": "Time left",
+  "attempts-left": "Attempts left"
+}

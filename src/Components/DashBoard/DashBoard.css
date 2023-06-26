@@ -1,0 +1,29 @@
+.dashboard {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.timer__container,
+.attempts__container {
+  display: flex;
+  justify-content: space-around;
+
+  min-width: 140px;
+  padding: 0px 4px;
+
+  border-radius: 4px;
+
+  color: #fff;
+  background-color: rgb(8, 6, 16);
+}
+
+@media (max-width: 425px) {
+  .dashboard {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .timer__container,
+  .attempts__container {
+    justify-content: center;
+  }
+}

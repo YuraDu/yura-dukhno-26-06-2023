@@ -1,0 +1,6 @@
+.language-selector {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  transform: translateY(-50%);
+}
