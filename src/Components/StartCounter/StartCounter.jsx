@@ -1,38 +1,42 @@
 import { useState, useEffect } from "react";
-import "./StartCounter.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setGameActive } from "./../../Redux/reducers/generalSlice";
+import "./StartCounter.css";
 
 const StartCounter = () => {
   const [count, setCount] = useState(3);
   const [displayText, setDisplayText] = useState("");
   const [hidden, setHidden] = useState(false);
 
+  const start = useSelector(state => state.general.start);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const countdown = setInterval(() => {
-      if (count > 1) {
-        setCount(count - 1);
-      } else if (count === 1) {
-        dispatch(setGameActive(true));
-        setDisplayText("START");
-        setCount(count - 1);
-      } else {
-        setHidden(true);
-        clearInterval(countdown);
+      if (start) {
+        if (count > 1) {
+          setCount(count - 1);
+        } else if (count === 1) {
+          setDisplayText("START");
+          setCount(count - 1);
+        } else {
+          dispatch(setGameActive(true));
+          setHidden(true);
+          clearInterval(countdown);
+        }
       }
     }, 1000);
 
     return () => {
       clearInterval(countdown);
     };
-  }, [count]);
+  }, [count, start, dispatch]);
 
   return (
     <div className="start-counter__container">
-      {!hidden && <div>{displayText || count}</div>}
+      {start && !hidden && <div>{displayText || count}</div>}
     </div>
   );
 };
+
 export default StartCounter;

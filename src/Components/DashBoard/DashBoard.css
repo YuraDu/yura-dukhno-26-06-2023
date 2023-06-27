@@ -4,7 +4,8 @@
   justify-content: space-between;
 }
 .timer__container,
-.attempts__container {
+.attempts__container,
+.start-button__container {
   display: flex;
   justify-content: space-around;
 
@@ -15,15 +16,25 @@
 
   color: #fff;
   background-color: rgb(8, 6, 16);
+
+  margin: 0 2px;
 }
 
-@media (max-width: 425px) {
+.start-button__container {
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
   .dashboard {
     flex-direction: column;
     gap: 2px;
   }
   .timer__container,
-  .attempts__container {
+  .attempts__container,
+  .start-button__container {
     justify-content: center;
+  }
+  .start-button__container {
+    order: -1;
   }
 }
