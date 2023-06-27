@@ -4,17 +4,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Roboto";
-  font-weight: 500;
+  font-weight: 800;
+
+  font-size: 100px;
 }
 .counter.hidden {
   display: none;
-}
-
-@keyframes grow {
-  from {
-    background-color: red;
-  }
-  to {
-    background-color: yellow;
-  }
 }
