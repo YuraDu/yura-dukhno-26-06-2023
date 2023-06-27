@@ -1,19 +1,29 @@
 const figures = [
-  { 
+  {
     figure: "Circle",
-    image: "#" },
-  { 
+    image: "#",
+    flipped: false,
+  },
+  {
     figure: "Square",
-    image: "#" },
-  { 
+    image: "#",
+    flipped: false,
+  },
+  {
     figure: "Triangle",
-    image: "#" },
-  { 
+    image: "#",
+    flipped: false,
+  },
+  {
     figure: "Rectangle",
-    image: "#" },
-  { 
+    image: "#",
+    flipped: false,
+  },
+  {
     figure: "Diamond",
-    image: "#" }
+    image: "#",
+    flipped:false,
+  },
 ];
 
 export default figures
