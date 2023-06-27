@@ -15,8 +15,8 @@ const StartCounter = () => {
       if (count > 1) {
         setCount(count - 1);
       } else if (count === 1) {
-        setDisplayText("START");
         dispatch(setGameActive(true));
+        setDisplayText("START");
         setCount(count - 1);
       } else {
         setHidden(true);

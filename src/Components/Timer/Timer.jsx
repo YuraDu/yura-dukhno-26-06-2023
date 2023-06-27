@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { setGameActive } from "../../Redux/reducers/generalSlice";
 
 const Timer = ({ duration, text }) => {
   const [timeRemaining, setTimeRemaining] = useState(duration);
+  const gameActive = useSelector(state => state.general.gameActive);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let timerInterval = null;
 
-    if (timeRemaining > 0) {
+    if (gameActive && timeRemaining > 0) {
       timerInterval = setInterval(() => {
         setTimeRemaining(prevTime => prevTime - 1);
       }, 1000);
@@ -16,6 +21,13 @@ const Timer = ({ duration, text }) => {
     return () => {
       clearInterval(timerInterval);
     };
+  }, [gameActive, timeRemaining]);
+
+  useEffect(() => {
+    if (timeRemaining === 0) {
+      dispatch(setGameActive(false));
+      console.log("Time's up!");
+    }
   }, [timeRemaining]);
 
   const minutes = Math.floor(timeRemaining / 60);
