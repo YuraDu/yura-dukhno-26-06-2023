@@ -6,5 +6,6 @@
   "ru": "Russian",
   "time-left": "Time left",
   "attempts-left": "Attempts left",
-  "start-game": "START GAME"
+  "start-game": "START GAME",
+  "retry": "RETRY"
 }

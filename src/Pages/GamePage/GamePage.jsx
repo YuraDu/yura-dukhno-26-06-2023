@@ -1,6 +1,5 @@
 import Dashboard from "./../../Components/DashBoard/DashBoard";
 import GameBoard from "./../../Components/GameBoard/GameBoard";
-import StartCounter from "./../../Components/StartCounter/StartCounter";
 
 import cards from "./../../Data/Cards";
 
@@ -11,7 +10,6 @@ export default function GamePage() {
     <div className="game__container">
       <Dashboard />
       <GameBoard cards={cards} />
-      <StartCounter />
     </div>
   );
 }

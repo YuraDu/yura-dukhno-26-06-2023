@@ -21,7 +21,9 @@ const Card = ({ flipped, handleFlip, card, container }) => {
       className={`card ${flipped ? "flipped" : ""}`}
     >
       <div className="card-pattern"></div>
-      <div className="card-content">Content</div>
+      <div className="card-content">
+        <img src={card.image} alt="" />
+      </div>
     </div>
   );
 };

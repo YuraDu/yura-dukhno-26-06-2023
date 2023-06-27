@@ -1,28 +1,28 @@
 const figures = [
   {
-    figure: "Circle",
-    image: "#",
+    figure: "centzontotochtin",
+    image: "/src/assets/images/1.png",
     flipped: false,
   },
   {
-    figure: "Square",
-    image: "#",
+    figure: "coder",
+    image: "/src/assets/images/2.png",
     flipped: false,
   },
   {
-    figure: "Triangle",
-    image: "#",
+    figure: "ulitka",
+    image: "/src/assets/images/3.png",
     flipped: false,
   },
   {
-    figure: "Rectangle",
-    image: "#",
+    figure: "Junona",
+    image: "/src/assets/images/4.png",
     flipped: false,
   },
   {
     figure: "Diamond",
-    image: "#",
-    flipped:false,
+    image: "/src/assets/images/5.png",
+    flipped: false,
   },
 ];
 
