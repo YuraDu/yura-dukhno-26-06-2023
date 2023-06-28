@@ -1,9 +1,7 @@
 .dashboard {
-  position: sticky;
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
-  z-index: 1000;
 }
 .timer__container,
 .attempts__container,

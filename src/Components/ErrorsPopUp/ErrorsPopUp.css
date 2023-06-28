@@ -1,0 +1,19 @@
+.errors__container {
+  margin: 10px auto;
+  width: 300px;
+}
+
+.disappear {
+  animation: fadeOut 3s forwards;
+  animation-timing-function: cubic-bezier(0.97, 1, 0.03, 1.02);
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

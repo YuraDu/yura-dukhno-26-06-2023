@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  falseStart: false,
+  error: "",
   gameActive: false,
   start: false,
   attempts: 6,
@@ -21,6 +23,12 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
+    addError(state, action){
+      state.error = action.payload;
+    },
+    setFalseStart(state, action){
+      state.falseStart = action.payload
+    },
     // eslint-disable-next-line no-unused-vars
     resetState(state) {
       return initialState;
@@ -57,6 +65,8 @@ const generalSlice = createSlice({
 });
 
 export const {
+  addError,
+  setFalseStart,
   resetState,
   setActiveAttempt,
   setGameActive,

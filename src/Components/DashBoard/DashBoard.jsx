@@ -7,13 +7,17 @@ import "./DashBoard.css";
 import StartButton from "../StartButton/StartButton";
 import { useDispatch, useSelector } from "react-redux";
 import { setGameActive, setStart } from "../../Redux/reducers/generalSlice";
+import { useState } from "react";
 
 export default function DashBoard() {
   const { t } = useTranslation();
+  const [noTimeLeft, setNoTimeLeft] = useState(false);
 
   const dispatch = useDispatch();
 
   const start = useSelector(state => state.general.start);
+  const falseStart = useSelector(state => state.general.falseStart);
+  const attempts = useSelector(state => state.general.attempts);
 
   const handleStartGame = () => {
     dispatch(setStart(true));
@@ -22,17 +26,26 @@ export default function DashBoard() {
 
   return (
     <div className="dashboard">
-      <div className="timer__container">
-        <Timer duration={60} text={t("time-left")} />
+      <div className={`timer__container ${noTimeLeft ? "error" : ""}`}>
+        <Timer
+          duration={60}
+          text={t("time-left")}
+          setNoTimeLeft={setNoTimeLeft}
+        />
         <PauseIcon />
       </div>
-      <div onClick={handleStartGame} className="start-button__container button">
+      <div
+        onClick={handleStartGame}
+        className={`start-button__container button ${
+          falseStart ? "error" : ""
+        }`}
+      >
         <StartButton
           start={start}
           text={!start ? t("start-game") : t("retry")}
         />
       </div>
-      <div className="attempts__container">
+      <div className={`attempts__container ${!attempts ? "error" : ""}`}>
         <Attempts text={t("attempts-left")} />
       </div>
     </div>

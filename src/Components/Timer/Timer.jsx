@@ -7,7 +7,7 @@ import {
   setStart,
 } from "../../Redux/reducers/generalSlice";
 
-const Timer = ({ duration, text }) => {
+const Timer = ({ duration, text, setNoTimeLeft }) => {
   const [timeRemaining, setTimeRemaining] = useState(duration);
   const gameActive = useSelector(state => state.general.gameActive);
 
@@ -21,6 +21,10 @@ const Timer = ({ duration, text }) => {
         setTimeRemaining(prevTime => prevTime - 1);
       }, 1000);
     }
+
+    if (timeRemaining < 15) {
+      setNoTimeLeft(true);
+    } else if (timeRemaining === duration) setNoTimeLeft(false);
 
     return () => {
       clearInterval(timerInterval);
@@ -55,6 +59,7 @@ const Timer = ({ duration, text }) => {
 Timer.propTypes = {
   duration: PropTypes.number,
   text: PropTypes.string,
+  setNoTimeLeft: PropTypes.func,
 };
 
 export default Timer;
