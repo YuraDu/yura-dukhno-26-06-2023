@@ -1,26 +1,26 @@
 const figures = [
   {
-    figure: "centzontotochtin",
+    name: "centzontotochtin",
     image: "/src/assets/images/1.png",
     flipped: false,
   },
   {
-    figure: "coder",
+    name: "coder",
     image: "/src/assets/images/2.png",
     flipped: false,
   },
   {
-    figure: "ulitka",
+    name: "ulitka",
     image: "/src/assets/images/3.png",
     flipped: false,
   },
   {
-    figure: "Junona",
+    name: "Junona",
     image: "/src/assets/images/4.png",
     flipped: false,
   },
   {
-    figure: "Diamond",
+    name: "Diamond",
     image: "/src/assets/images/5.png",
     flipped: false,
   },

@@ -13,13 +13,22 @@ const GameBoard = ({ cards }) => {
   return (
     <div className="game-board__container">
       <div className="cards-row left-row">
-        {firstShuffledCards.map(card => (
-          <UpdatedCard key={card.figure} card={card} container="first" />
+        {firstShuffledCards.map((card, index) => (
+          <UpdatedCard
+            key={`${index}-${card.figure}`}
+            card={card}
+            container="first"
+          />
         ))}
       </div>
       <div className="cards-row right-row">
-        {secondShuffledCards.map(card => (
-          <UpdatedCard key={card.figure} card={card} container="second" />
+        {secondShuffledCards.map((card, index) => (
+          <UpdatedCard
+            key={`${index}-${card.figure}`}
+            index={index}
+            card={card}
+            container="second"
+          />
         ))}
       </div>
     </div>

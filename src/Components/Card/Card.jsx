@@ -5,19 +5,12 @@ import { OFF } from "../../Data/consts";
 
 const Card = ({ flipped, handleFlip, card, container }) => {
   const active = useSelector(state => state.general.gameActive);
-
-  console.log(
-    "🚀 ~ file: Card.jsx:5 ~ Card ~ card:",
-    card,
-    container,
-    flipped,
-    active
-  );
+  const selected = useSelector(state => state.general.selected);
 
   return (
     <div
-      style={active ? {} : OFF}
-      onClick={handleFlip}
+      style={!active || selected.container === container ? OFF : {}}
+      onClick={() => handleFlip(card.name, container)}
       className={`card ${flipped ? "flipped" : ""}`}
     >
       <div className="card-pattern"></div>

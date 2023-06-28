@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { setGameActive, setStart } from "../../Redux/reducers/generalSlice";
+import {
+  resetState,
+  setGameActive,
+  setStart,
+} from "../../Redux/reducers/generalSlice";
 
 const Timer = ({ duration, text }) => {
   const [timeRemaining, setTimeRemaining] = useState(duration);
@@ -28,6 +32,7 @@ const Timer = ({ duration, text }) => {
       dispatch(setGameActive(false));
       dispatch(setStart(false));
       setTimeRemaining(duration);
+      dispatch(resetState());
       console.log("Time's up!");
     }
   }, [timeRemaining]);
