@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 const Attempts = ({ text }) => {
-  return <div>{text}: 6</div>;
+  const attempts = useSelector(state => state.general.attempts);
+  return <div>{`${text}: ${attempts}`}</div>;
 };
 
 Attempts.propTypes = {

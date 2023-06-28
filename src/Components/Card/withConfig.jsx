@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveAttempt,
+  setAttempt,
   setConcurrence,
   setSelected,
 } from "../../Redux/reducers/generalSlice";
@@ -30,6 +31,7 @@ export const withConfig = Component => {
         if (activeAttempt) {
           dispatch(setActiveAttempt(false));
           dispatch(setSelected({ name: "", container: "" }));
+          dispatch(setAttempt());
         } else dispatch(setSelected({ name, container }));
       }
     };
@@ -42,6 +44,7 @@ export const withConfig = Component => {
     useEffect(() => {
       if (!active) setFlipped(false);
       else if (!activeAttempt) {
+        dispatch(setSelected({ name: "", container: "" }));
         const card = pairs.some(pair => pair.cardName === props.card.name);
         if (!card) {
           const timeout = setTimeout(() => {
