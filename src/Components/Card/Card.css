@@ -51,14 +51,22 @@
     height: 250px;
   }
 }
-/* 
+
 @media (max-width: 768px) {
   .card {
-    width: 120px;
-    height: 200px;
+    width: 100px;
+    height: 180px;
   }
 }
 
+@media (max-width: 540px) {
+  .card {
+    height: 80px;
+    width: 90px;
+  }
+}
+
+/* 
 @media (max-width: 645px) {
   .card {
     width: 76px;
