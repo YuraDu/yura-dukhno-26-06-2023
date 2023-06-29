@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  darkMode: false,
   pause: false,
   gameStatus: undefined,
   shuffle: false,
@@ -27,6 +28,9 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
+    setDarkMode(state){
+      state.darkMode = !state.darkMode;
+    },
     setPause(state, action){
       state.pause = action.payload
     },
@@ -81,6 +85,7 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setDarkMode,
   setPause,
   setGameStatus,
   setShuffle,

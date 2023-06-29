@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 import LanguageSelector from "./../LanguageSelector/LanguageSelector";
 
 import "./Navigation.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setDarkMode } from "../../Redux/reducers/generalSlice";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const darkMode = useSelector(state => state.general.darkMode);
 
   const { t } = useTranslation();
 
@@ -15,9 +22,20 @@ const Navigation = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const HandleStylesChange = () => {
+    dispatch(setDarkMode());
+  };
+
   return (
     <nav className="navigation">
-      <LanguageSelector />
+      <div className="navigation__buttons">
+        {!darkMode ? (
+          <DarkModeIcon onClick={HandleStylesChange} />
+        ) : (
+          <LightModeIcon onClick={HandleStylesChange} />
+        )}
+        <LanguageSelector />
+      </div>
       <div
         className={`burger ${isMenuOpen ? "burger--open" : ""}`}
         onClick={handleMenuToggle}

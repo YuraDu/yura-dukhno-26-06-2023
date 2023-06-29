@@ -4,6 +4,15 @@
   position: relative;
 }
 
+.navigation__buttons {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
 .burger {
   display: none;
 }

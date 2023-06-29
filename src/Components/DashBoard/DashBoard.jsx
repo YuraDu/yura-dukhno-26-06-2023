@@ -1,5 +1,6 @@
 import Timer from "./../Timer/Timer";
 import PauseIcon from "@mui/icons-material/Pause";
+
 import Attempts from "./../Attempts/Attempts";
 import { useTranslation } from "react-i18next";
 

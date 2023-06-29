@@ -5,10 +5,13 @@ import GamePage from "./Pages/GamePage/GamePage";
 import LeadersPage from "./Pages/LeadersPage/LeadersPage";
 
 import "./App.css";
+import { useSelector } from "react-redux";
 
 function App() {
+  const dark = useSelector(state => state.general.darkMode);
+
   return (
-    <>
+    <div style={{ backgroundColor: "#f2f2f2" }} className={dark ? "dark" : ""}>
       <Navigation />
       <Routes>
         <Route path="/" element={<StartPage />} />
@@ -16,7 +19,7 @@ function App() {
         <Route path="/game" element={<GamePage />} />
         <Route path="/leaders" element={<LeadersPage />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
