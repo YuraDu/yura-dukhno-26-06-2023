@@ -57,7 +57,11 @@ export default function DashBoard() {
 
   return (
     <div className="dashboard">
-      <div className={`timer__container button ${noTimeLeft ? "error" : ""}`}>
+      <div
+        className={`timer__container dashboard-item button ${
+          noTimeLeft ? "error" : ""
+        }`}
+      >
         <Timer
           duration={60}
           text={t("time-left")}
@@ -67,7 +71,7 @@ export default function DashBoard() {
       </div>
       <div
         onClick={handleStartGame}
-        className={`start-button__container button ${
+        className={`start-button__container dashboard-item button ${
           falseStart ? "error" : ""
         }`}
       >
@@ -76,7 +80,11 @@ export default function DashBoard() {
           text={!start ? t("start-game") : t("retry")}
         />
       </div>
-      <div className={`attempts__container ${!attempts ? "error" : ""}`}>
+      <div
+        className={`attempts__container dashboard-item ${
+          !attempts ? "error" : ""
+        }`}
+      >
         <Attempts attempts={attempts} text={t("attempts-left")} />
       </div>
     </div>
