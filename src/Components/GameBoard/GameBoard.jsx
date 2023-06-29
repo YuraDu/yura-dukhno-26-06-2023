@@ -20,7 +20,7 @@ const GameBoard = ({ cards }) => {
   useEffect(() => {}, [shuffle]);
 
   return (
-    <div>
+    <div style={{ minHeight: "80vh" }}>
       <StatusModal />
       <div className="game-board__container">
         <div className="cards-row left-row">
