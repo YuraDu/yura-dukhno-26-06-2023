@@ -13,6 +13,12 @@ const GameBoard = ({ cards }) => {
 
   // TODO Shuffle arrays
 
+  // useEffect(() => {
+  //   const card = pairs.some(pair => !pair.concurrence);
+  //   console.log("🚀 ~ file: GameBoard.jsx:22 ~ useEffect ~ card:", card);
+  //   return () => {};
+  // }, [pairs]);
+
   return (
     <div>
       <div className="game-board__container">

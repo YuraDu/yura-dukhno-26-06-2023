@@ -19,7 +19,9 @@ export const withConfig = Component => {
     const active = useSelector(state => state.general.gameActive);
     const selected = useSelector(state => state.general.selected);
     const activeAttempt = useSelector(state => state.general.activeAttempt);
+    const attempts = useSelector(state => state.general.attempts);
     const pairs = useSelector(state => state.general.pairs);
+    const cardsLeft = pairs.filter(pair => !pair.concurrence);
 
     const handleSelect = (name, container) => {
       setFlipped(!flipped);
@@ -33,6 +35,9 @@ export const withConfig = Component => {
           dispatch(setSelected({ name: "", container: "" }));
           dispatch(setAttempt());
         } else dispatch(setSelected({ name, container }));
+      }
+      if (cardsLeft.length === 1 && attempts) {
+        console.log("You WON !!!!!");
       }
     };
 
