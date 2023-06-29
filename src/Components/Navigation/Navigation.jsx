@@ -27,52 +27,57 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
-      <div className="navigation__buttons">
-        {!darkMode ? (
-          <DarkModeIcon onClick={HandleStylesChange} />
-        ) : (
-          <LightModeIcon onClick={HandleStylesChange} />
-        )}
-        <LanguageSelector />
-      </div>
-      <div
-        className={`burger ${isMenuOpen ? "burger--open" : ""}`}
-        onClick={handleMenuToggle}
-      >
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-      </div>
-      <ul className="nav-links">
-        <li>
-          <Link to="/start-page" className="active">
+    <div className="nav__container">
+      <nav className="navigation">
+        <div className="navigation__buttons">
+          {!darkMode ? (
+            <DarkModeIcon onClick={HandleStylesChange} />
+          ) : (
+            <LightModeIcon
+              style={{ color: "#f2f2f2" }}
+              onClick={HandleStylesChange}
+            />
+          )}
+          <LanguageSelector />
+        </div>
+        <div
+          className={`burger ${isMenuOpen ? "burger--open" : ""}`}
+          onClick={handleMenuToggle}
+        >
+          <span className="burger__line"></span>
+          <span className="burger__line"></span>
+          <span className="burger__line"></span>
+        </div>
+        <ul className="nav-links">
+          <li className="nav-link button">
+            <Link to="/start-page" className="active">
+              {t("main")}
+            </Link>
+          </li>
+          <li className="nav-link button">
+            <Link to="/game" className="active">
+              {t("game")}
+            </Link>
+          </li>
+          <li className="nav-link button">
+            <Link to="/leaders" className="active">
+              {t("leaders")}
+            </Link>
+          </li>
+        </ul>
+        <div className={`menu-collapse ${!isMenuOpen ? "collapsed" : ""}`}>
+          <Link to="/start-page" className="active" onClick={handleMenuToggle}>
             {t("main")}
           </Link>
-        </li>
-        <li>
-          <Link to="/game" className="active">
+          <Link to="/game" className="active" onClick={handleMenuToggle}>
             {t("game")}
           </Link>
-        </li>
-        <li>
-          <Link to="/leaders" className="active">
+          <Link to="/leaders" className="active" onClick={handleMenuToggle}>
             {t("leaders")}
           </Link>
-        </li>
-      </ul>
-      <div className={`menu-collapse ${!isMenuOpen ? "collapsed" : ""}`}>
-        <Link to="/start-page" className="active" onClick={handleMenuToggle}>
-          {t("main")}
-        </Link>
-        <Link to="/game" className="active" onClick={handleMenuToggle}>
-          {t("game")}
-        </Link>
-        <Link to="/leaders" className="active" onClick={handleMenuToggle}>
-          {t("leaders")}
-        </Link>
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </div>
   );
 };
 

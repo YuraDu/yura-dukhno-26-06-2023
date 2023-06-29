@@ -1,37 +1,45 @@
 .dashboard {
   padding: 10px 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 4px;
+  max-width: 740px;
+  margin: 0 auto;
 }
 .timer__container,
 .attempts__container,
 .start-button__container {
   display: flex;
   justify-content: space-around;
-  padding: 0px 4px;
-  background: linear-gradient(to bottom, #9376e0 5%, #6d52b9 100%);
-  background-color: #644ea0;
+  /* padding: 0px 4px; */
+  background: linear-gradient(to bottom, #535a67 5%, #505969 100%);
+  background-color: #535a67;
   border-radius: 4px;
-  border: 1px solid #513898;
+  /* border: 1px solid #513898; */
   cursor: pointer;
   color: #ffffff;
-  font-family: Arial;
-  font-size: 13px;
+  font-family: Roboto;
+  font-size: 12px;
+  padding: 0.5rem;
   font-weight: bold;
-  padding: 1px 6px;
+  /* padding: 1px 6px; */
   text-decoration: none;
-  text-shadow: 0px 1px 0px #594495;
+  text-shadow: 0px 1px 0px #41454c;
   align-items: center;
+  min-width: 100px;
 }
 
 .button:hover {
-  background: linear-gradient(to bottom, #775bc5 5%, #7a60c2 100%);
-  background-color: #7858d1;
+  background: linear-gradient(to bottom, #5e6572 5%, #646d7c 100%);
+  background-color: #535a67;
 }
 .button:active {
   position: relative;
   top: 1px;
+}
+
+.mode__wrapper--dark .button:hover {
+  background: transparent;
 }
 
 .start-button__container {

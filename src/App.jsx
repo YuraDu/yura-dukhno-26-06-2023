@@ -11,7 +11,7 @@ function App() {
   const dark = useSelector(state => state.general.darkMode);
 
   return (
-    <div style={{ backgroundColor: "#f2f2f2" }} className={dark ? "dark" : ""}>
+    <div className={dark ? "mode__wrapper--dark" : "mode__wrapper--light"}>
       <Navigation />
       <Routes>
         <Route path="/" element={<StartPage />} />

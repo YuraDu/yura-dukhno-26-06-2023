@@ -1,11 +1,11 @@
 {
-  "main": "Main",
-  "game": "Game",
-  "leaders": "Leaders",
+  "main": "MAIN",
+  "game": "GAME",
+  "leaders": "LEADERS",
   "en": "English",
   "ru": "Russian",
-  "time-left": "Time left",
-  "attempts-left": "Attempts left",
+  "time-left": "TIME LEFT",
+  "attempts-left": "ATTEMPTS",
   "start-game": "START GAME",
   "retry": "RETRY",
   "goal": "The ultimate goal of the memory game is to uncover all the card pairs on the game board.",
@@ -22,6 +22,6 @@
     "The player can select the display language, English or Russian.",
     "After each win, the player can save their result in the leaderboard by entering their name (5 characters). The leaderboard ranking is sorted by the minimum number of moves."
   ],
-  "winning": "You won!",
-  "losing": "Game over."
+  "winning": "YOU WON!",
+  "losing": "GAME OVER"
 }

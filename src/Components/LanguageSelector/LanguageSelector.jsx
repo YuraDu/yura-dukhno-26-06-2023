@@ -4,11 +4,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import "./LanguageSelector.css";
+import { useSelector } from "react-redux";
 
 export default function LanguageSelector() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const { t, i18n } = useTranslation();
+
+  const darkMode = useSelector(state => state.general.darkMode);
 
   const handleLanguageIconClick = event => {
     setAnchorEl(event.currentTarget);
@@ -25,10 +28,15 @@ export default function LanguageSelector() {
 
   return (
     <div className="language-selector">
-      <Toolbar>
+      <Toolbar className="toolbar">
         <Tooltip title="Select language">
-          <IconButton onClick={handleLanguageIconClick}>
-            <LanguageIcon />
+          <IconButton
+            style={{ padding: "0" }}
+            onClick={handleLanguageIconClick}
+          >
+            <LanguageIcon
+              style={darkMode ? { color: "#fff" } : { color: "#213547" }}
+            />
           </IconButton>
         </Tooltip>
       </Toolbar>

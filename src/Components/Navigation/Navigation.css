@@ -1,16 +1,29 @@
-.navigation {
+.nav__container {
   background-color: #f2f2f2;
-  padding: 10px;
+  padding: 10px 0 0 0;
   position: relative;
+  max-width: 740px;
+  margin: 0 auto;
+}
+.toolbar {
+  padding: 0 !important;
+}
+.mode__wrapper--dark .nav__container {
+  background-color: #090b0d;
 }
 
 .navigation__buttons {
   position: absolute;
   right: 0;
-  top: 30px;
+  top: 28px;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
+  gap: 6px;
+}
+
+.navigation__buttons svg {
+  cursor: pointer;
 }
 
 .burger {
@@ -27,13 +40,34 @@
 .nav-links {
   display: flex;
   list-style: none;
-  margin: 10px 0;
+  margin: 0;
   gap: 0.5rem;
+  padding: 0;
+}
+
+.nav-link {
+  width: 120px;
+  background-color: #5e6572;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 0.5rem;
+}
+
+.mode__wrapper--dark .nav-link {
+  width: 120px;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 0.5rem;
+  border: solid 1px #fff;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
+
   margin-bottom: 10px;
   font-weight: bold;
 }
