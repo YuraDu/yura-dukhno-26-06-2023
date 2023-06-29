@@ -7,5 +7,21 @@
   "time-left": "Time left",
   "attempts-left": "Attempts left",
   "start-game": "START GAME",
-  "retry": "RETRY"
+  "retry": "RETRY",
+  "goal": "The ultimate goal of the memory game is to uncover all the card pairs on the game board.",
+  "rules": [
+    "The game board presents a variety of cards. Each card has its pair, meaning there are two cards with the same image on the board.",
+    "At the beginning of the game, all cards are in a closed state, meaning the image on the card is hidden.",
+    "The player is given the opportunity to open two cards per turn.",
+    "If the opened cards are not a pair, they are flipped back, and their images are hidden.",
+    "If the opened cards are a pair (have the same image), they remain open, and their images stay visible.",
+    "The game continues until all cards are uncovered (win) or until the move limit is reached (loss).",
+    "The player has a limited number of moves, and they can see how many moves are left.",
+    "The player can click the \"Retry\" button to reset the game and shuffle all the cards.",
+    "The game has a time limit of 60 seconds. If the time runs out, the player loses.",
+    "The player can select the display language, English or Russian.",
+    "After each win, the player can save their result in the leaderboard by entering their name (5 characters). The leaderboard ranking is sorted by the minimum number of moves."
+  ],
+  "winning": "You won!",
+  "losing": "Game over."
 }

@@ -6,6 +6,7 @@ import {
   setActiveAttempt,
   setAttempt,
   setConcurrence,
+  // setGameStatus,
   setSelected,
 } from "../../Redux/reducers/generalSlice";
 
@@ -25,6 +26,7 @@ export const withConfig = Component => {
     const cardsLeft = pairs.filter(pair => !pair.concurrence);
 
     const handleSelect = (name, container) => {
+      // eslint-disable-next-line no-debugger
       setFlipped(!flipped);
       if (!selected.name) dispatch(setActiveAttempt(true));
       if (selected.name === name) {
@@ -38,7 +40,7 @@ export const withConfig = Component => {
         } else dispatch(setSelected({ name, container }));
       }
       if (cardsLeft.length === 1 && attempts) {
-        console.log("You WON !!!!!");
+        // dispatch(setGameStatus("won"));
       }
     };
 

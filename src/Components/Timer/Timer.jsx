@@ -11,6 +11,7 @@ const Timer = ({ duration, text, setNoTimeLeft }) => {
   const [timeRemaining, setTimeRemaining] = useState(duration);
   const gameActive = useSelector(state => state.general.gameActive);
   const retry = useSelector(state => state.general.retry);
+  // const pause = useSelector(state => state.general.pause);
 
   const dispatch = useDispatch();
 

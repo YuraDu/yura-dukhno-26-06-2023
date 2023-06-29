@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  pause: false,
+  gameStatus: undefined,
   shuffle: false,
   falseStart: false,
   error: "",
@@ -25,17 +27,23 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
-    setShuffle(state){
-    state.shuffle = !state.shuffle;
+    setPause(state, action){
+      state.pause = action.payload
     },
-    setRetry(state){
+    setGameStatus(state, action) {
+      state.gameStatus = action.payload;
+    },
+    setShuffle(state) {
+      state.shuffle = !state.shuffle;
+    },
+    setRetry(state) {
       state.retry = !state.retry;
     },
-    addError(state, action){
+    addError(state, action) {
       state.error = action.payload;
     },
-    setFalseStart(state, action){
-      state.falseStart = action.payload
+    setFalseStart(state, action) {
+      state.falseStart = action.payload;
     },
     // eslint-disable-next-line no-unused-vars
     resetState(state) {
@@ -73,6 +81,8 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setPause,
+  setGameStatus,
   setShuffle,
   setRetry,
   addError,

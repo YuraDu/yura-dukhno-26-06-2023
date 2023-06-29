@@ -8,6 +8,8 @@ import StartButton from "../StartButton/StartButton";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setGameActive,
+  setGameStatus,
+  setPause,
   setRetry,
   setShuffle,
   setStart,
@@ -23,6 +25,12 @@ export default function DashBoard() {
   const start = useSelector(state => state.general.start);
   const falseStart = useSelector(state => state.general.falseStart);
   const attempts = useSelector(state => state.general.attempts);
+  const pairs = useSelector(state => state.general.pairs);
+  const won = pairs.every(pair => pair.concurrence === true);
+
+  if (won) dispatch(setGameStatus("won"));
+
+  if (!attempts) dispatch(setGameStatus("lost"));
 
   const handleStartGame = () => {
     let setShuffleTimeOut;
@@ -42,15 +50,19 @@ export default function DashBoard() {
     }
   };
 
+  const handlePause = () => {
+    dispatch(setPause(true));
+  };
+
   return (
     <div className="dashboard">
-      <div className={`timer__container ${noTimeLeft ? "error" : ""}`}>
+      <div className={`timer__container button ${noTimeLeft ? "error" : ""}`}>
         <Timer
           duration={60}
           text={t("time-left")}
           setNoTimeLeft={setNoTimeLeft}
         />
-        <PauseIcon />
+        <PauseIcon onClick={handlePause} />
       </div>
       <div
         onClick={handleStartGame}
@@ -64,7 +76,7 @@ export default function DashBoard() {
         />
       </div>
       <div className={`attempts__container ${!attempts ? "error" : ""}`}>
-        <Attempts text={t("attempts-left")} />
+        <Attempts attempts={attempts} text={t("attempts-left")} />
       </div>
     </div>
   );

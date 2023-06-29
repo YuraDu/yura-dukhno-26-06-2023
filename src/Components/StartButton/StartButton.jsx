@@ -1,8 +1,10 @@
+import React from "react";
 import PropTypes from "prop-types";
 
-const StartButton = ({ text }) => {
+// eslint-disable-next-line react/display-name
+const StartButton = React.memo(({ text }) => {
   return <div>{text}</div>;
-};
+});
 
 StartButton.propTypes = {
   text: PropTypes.string,

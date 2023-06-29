@@ -7,7 +7,7 @@ import Card from "./../Card/Card";
 import "./GameBoard.css";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-// import { useSelector } from "react-redux";
+import StatusModal from "../StatusModal/StatusModal";
 
 const GameBoard = ({ cards }) => {
   const firstShuffledCards = shuffleArray(cards);
@@ -17,14 +17,11 @@ const GameBoard = ({ cards }) => {
 
   const UpdatedCard = withConfig(Card);
 
-  // TODO Shuffle arrays
-
-  useEffect(() => {
-    console.log("skddskjfhskdhf");
-  }, [shuffle]);
+  useEffect(() => {}, [shuffle]);
 
   return (
     <div>
+      <StatusModal />
       <div className="game-board__container">
         <div className="cards-row left-row">
           {firstShuffledCards.map((card, index) => (
