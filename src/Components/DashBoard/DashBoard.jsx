@@ -6,7 +6,12 @@ import { useTranslation } from "react-i18next";
 import "./DashBoard.css";
 import StartButton from "../StartButton/StartButton";
 import { useDispatch, useSelector } from "react-redux";
-import { setGameActive, setStart } from "../../Redux/reducers/generalSlice";
+import {
+  setGameActive,
+  setRetry,
+  setShuffle,
+  setStart,
+} from "../../Redux/reducers/generalSlice";
 import { useState } from "react";
 
 export default function DashBoard() {
@@ -20,8 +25,21 @@ export default function DashBoard() {
   const attempts = useSelector(state => state.general.attempts);
 
   const handleStartGame = () => {
-    dispatch(setStart(true));
-    dispatch(setGameActive(true));
+    let setShuffleTimeOut;
+    switch (start) {
+      case false:
+        dispatch(setStart(true));
+        dispatch(setGameActive(true));
+        break;
+      case true:
+        dispatch(setRetry());
+        setShuffleTimeOut = setTimeout(() => {
+          dispatch(setShuffle());
+        }, 500);
+        return () => clearTimeout(setShuffleTimeOut);
+      default:
+        break;
+    }
   };
 
   return (

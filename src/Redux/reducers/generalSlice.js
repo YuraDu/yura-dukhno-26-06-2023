@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  shuffle: false,
   falseStart: false,
   error: "",
   gameActive: false,
+  retry: false,
   start: false,
   attempts: 6,
   activeAttempt:false,
@@ -23,6 +25,12 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
+    setShuffle(state){
+    state.shuffle = !state.shuffle;
+    },
+    setRetry(state){
+      state.retry = !state.retry;
+    },
     addError(state, action){
       state.error = action.payload;
     },
@@ -65,6 +73,8 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setShuffle,
+  setRetry,
   addError,
   setFalseStart,
   resetState,

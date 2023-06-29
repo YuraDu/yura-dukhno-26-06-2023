@@ -1,23 +1,27 @@
+// import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { shuffleArray } from "../../Services/GameBoardServise";
 import { withConfig } from "../Card/withConfig";
 import ErrorsPopUp from "../ErrorsPopUp/ErrorsPopUp";
 import Card from "./../Card/Card";
 import "./GameBoard.css";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+// import { useSelector } from "react-redux";
 
 const GameBoard = ({ cards }) => {
   const firstShuffledCards = shuffleArray(cards);
   const secondShuffledCards = shuffleArray(cards);
 
+  const shuffle = useSelector(state => state.general.shuffle);
+
   const UpdatedCard = withConfig(Card);
 
   // TODO Shuffle arrays
 
-  // useEffect(() => {
-  //   const card = pairs.some(pair => !pair.concurrence);
-  //   console.log("🚀 ~ file: GameBoard.jsx:22 ~ useEffect ~ card:", card);
-  //   return () => {};
-  // }, [pairs]);
+  useEffect(() => {
+    console.log("skddskjfhskdhf");
+  }, [shuffle]);
 
   return (
     <div>

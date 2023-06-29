@@ -20,6 +20,7 @@ export const withConfig = Component => {
     const selected = useSelector(state => state.general.selected);
     const activeAttempt = useSelector(state => state.general.activeAttempt);
     const attempts = useSelector(state => state.general.attempts);
+    const retry = useSelector(state => state.general.retry);
     const pairs = useSelector(state => state.general.pairs);
     const cardsLeft = pairs.filter(pair => !pair.concurrence);
 
@@ -45,6 +46,14 @@ export const withConfig = Component => {
       card: PropTypes.object,
       container: PropTypes.string,
     };
+
+    useEffect(() => {
+      if (!active) setFlipped(false);
+    }, [retry, active]);
+
+    useEffect(() => {
+      setFlipped(false);
+    }, [retry]);
 
     useEffect(() => {
       if (!active) setFlipped(false);

@@ -10,6 +10,7 @@ import {
 const Timer = ({ duration, text, setNoTimeLeft }) => {
   const [timeRemaining, setTimeRemaining] = useState(duration);
   const gameActive = useSelector(state => state.general.gameActive);
+  const retry = useSelector(state => state.general.retry);
 
   const dispatch = useDispatch();
 
@@ -24,12 +25,14 @@ const Timer = ({ duration, text, setNoTimeLeft }) => {
 
     if (timeRemaining < 15) {
       setNoTimeLeft(true);
-    } else if (timeRemaining === duration) setNoTimeLeft(false);
+    } else if (timeRemaining === duration) {
+      setNoTimeLeft(false);
+    }
 
     return () => {
       clearInterval(timerInterval);
     };
-  }, [gameActive, timeRemaining]);
+  }, [gameActive, timeRemaining, retry]);
 
   useEffect(() => {
     if (timeRemaining === 0) {
@@ -40,6 +43,12 @@ const Timer = ({ duration, text, setNoTimeLeft }) => {
       console.log("Time's up!");
     }
   }, [timeRemaining]);
+
+  useEffect(() => {
+    // if (retry) {
+    setTimeRemaining(duration);
+    // }
+  }, [retry]);
 
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
