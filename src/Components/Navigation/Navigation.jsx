@@ -49,23 +49,21 @@ const Navigation = () => {
           <span className="burger__line"></span>
         </div>
         <ul className="nav-links">
-          <li className="nav-link button">
-            <Link to="/start-page" className="active">
-              {t("main")}
-            </Link>
-          </li>
-          <li className="nav-link button">
-            <Link to="/game" className="active">
-              {t("game")}
-            </Link>
-          </li>
-          <li className="nav-link button">
-            <Link to="/leaders" className="active">
-              {t("leaders")}
-            </Link>
-          </li>
+          {/* <li className="nav-link button"> */}
+          <Link to="/start-page" className="active nav-link button">
+            {t("main")}
+          </Link>
+          {/* </li> */}
+          <Link to="/game" className="active nav-link button">
+            {t("game")}
+          </Link>
+          <Link to="/leaders" className="active nav-link button">
+            {t("leaders")}
+          </Link>
         </ul>
-        <div className={`menu-collapse ${!isMenuOpen ? "collapsed" : ""}`}>
+        <div
+          className={`menu-collapse ${!isMenuOpen ? "collapsed" : "opened"}`}
+        >
           <Link to="/start-page" className="active" onClick={handleMenuToggle}>
             {t("main")}
           </Link>

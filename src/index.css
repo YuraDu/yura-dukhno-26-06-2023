@@ -38,7 +38,7 @@ body {
 .error {
   display: flex;
   justify-content: space-around;
-  padding: 0.5rem;
+  padding: 2px 10px;
 
   background: linear-gradient(to bottom, #e07676 5%, #b95252 100%);
   background-color: #a04e4e;
@@ -52,6 +52,6 @@ body {
   text-decoration: none;
   /* text-shadow: 0px 1px 0px #954444; */
   align-items: center;
-  min-width: 100px;
+  /* min-width: 100px; */
   border: 1px transparent solid;
 }

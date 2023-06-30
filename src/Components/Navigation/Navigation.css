@@ -1,6 +1,6 @@
 .nav__container {
   background-color: #f2f2f2;
-  padding: 10px 0 0 0;
+  padding: 10px 10px;
   position: relative;
   max-width: 740px;
   margin: 0 auto;
@@ -14,8 +14,8 @@
 
 .navigation__buttons {
   position: absolute;
-  right: 0;
-  top: 28px;
+  right: 14px;
+  top: 20px;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
@@ -51,8 +51,10 @@
   cursor: pointer;
   border-radius: 4px;
   font-size: 12px;
-  padding: 0.5rem;
+  padding: 2px 10px;
   border: solid 1px transparent;
+
+  margin: 0;
 }
 
 .mode__wrapper--dark .nav-link {
@@ -61,16 +63,21 @@
   background-color: transparent;
   border-radius: 4px;
   font-size: 12px;
-  padding: 0.5rem;
+  padding: 2px 10px;
+
   border: solid 1px #fff;
   opacity: 0.6;
+  transition: all 0.5;
+}
+
+.nav-link:hover {
+  opacity: 1;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #ffffff;
 
-  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -79,6 +86,9 @@
 }
 
 @media (max-width: 768px) {
+  .nav__container {
+    max-width: 540px;
+  }
   .burger {
     display: flex;
     flex-direction: column;
@@ -105,8 +115,15 @@
     background-color: #f2f2f2;
     padding: 10px;
     width: calc(100% - 20px);
-
     z-index: 999;
+  }
+  .menu-collapse.opened {
+    animation-name: slideIn;
+    animation-duration: 0.3s;
+  }
+  .menu-collapse.collapsed {
+    animation-name: slideOut;
+    animation-duration: 0.3s;
   }
 
   .menu-collapse a {
@@ -117,12 +134,9 @@
 
     width: 100%;
     text-align: left;
-
-    animation-name: slideInLeft;
-    animation-duration: 0.3s;
   }
 
-  @keyframes slideInLeft {
+  @keyframes slideIn {
     0% {
       transform: translateX(-100%);
       opacity: 0;
@@ -130,6 +144,17 @@
     100% {
       transform: translateX(0);
       opacity: 1;
+    }
+  }
+
+  @keyframes slideOut {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
     }
   }
 }
