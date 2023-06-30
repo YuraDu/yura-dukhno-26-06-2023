@@ -11,7 +11,7 @@ const initialState = {
   retry: false,
   start: false,
   attempts: 6,
-  attemptsPool:0,
+  attemptsPool:[],
   activeAttempt:false,
   selected: {name:'', container:''},
   alert: "",
@@ -23,15 +23,15 @@ const initialState = {
     { concurrence: false, cardName: '' },
   ],
 };
-
+    
 
 
 const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
-    setAttemptsPool(state){
-      state.attemptsPool
+    setAttemptsPool(state, actions){
+      state.attemptsPool = [...state.attemptsPool, actions.payload];
     },
     setAlert(state, action){
       state.alert = action.payload

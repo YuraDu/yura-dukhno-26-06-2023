@@ -17,6 +17,7 @@ import {
   setStart,
 } from "../../Redux/reducers/generalSlice";
 import { useEffect, useState } from "react";
+import { checkConsecutiveTrue, checkConsecutiveFalse } from "../../Utils";
 
 export default function DashBoard() {
   const { t } = useTranslation();
@@ -28,10 +29,24 @@ export default function DashBoard() {
   const falseStart = useSelector(state => state.general.falseStart);
   const attempts = useSelector(state => state.general.attempts);
   const pairs = useSelector(state => state.general.pairs);
-  // const gameActive = useSelector(state => state.general.gameActive);
-  const won = pairs.every(pair => pair.concurrence === true);
+  const attemptsPool = useSelector(state => state.general.attemptsPool);
 
   useEffect(() => {
+    switch (true) {
+      case checkConsecutiveTrue(attemptsPool):
+        dispatch(setAlert(t("great-job")));
+        break;
+      case checkConsecutiveFalse(attemptsPool):
+        dispatch(setAlert(t("better-luck")));
+        break;
+      default:
+        break;
+    }
+  }, [attemptsPool]);
+
+  useEffect(() => {
+    const won = pairs.every(pair => pair.concurrence === true);
+
     if (won) {
       dispatch(setGameStatus("won"));
       dispatch(setRetry());
@@ -39,7 +54,7 @@ export default function DashBoard() {
     }
 
     if (!attempts) dispatch(setGameStatus("lost"));
-  }, [won, attempts]);
+  }, [pairs, attempts]);
 
   const handleStartGame = () => {
     let setShuffleTimeOut;
@@ -47,10 +62,11 @@ export default function DashBoard() {
       case false:
         dispatch(setStart(true));
         dispatch(setGameActive(true));
-        dispatch(setAlert("START!"));
+        dispatch(setAlert("start"));
         break;
       case true:
         dispatch(setRetry());
+        dispatch(setAlert("start"));
         setShuffleTimeOut = setTimeout(() => {
           dispatch(setShuffle());
         }, 500);

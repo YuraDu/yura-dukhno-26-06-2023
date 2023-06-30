@@ -7,6 +7,7 @@ import {
   setAttempt,
   setConcurrence,
   setSelected,
+  setAttemptsPool,
 } from "../../Redux/reducers/generalSlice";
 
 export const withConfig = Component => {
@@ -21,16 +22,19 @@ export const withConfig = Component => {
     const activeAttempt = useSelector(state => state.general.activeAttempt);
     const retry = useSelector(state => state.general.retry);
     const pairs = useSelector(state => state.general.pairs);
+    // const attemptsPools = useSelector(state => state.general.attemptsPools);
 
     const handleSelect = (name, container) => {
       // eslint-disable-next-line no-debugger
       setFlipped(!flipped);
       if (!selected.name) dispatch(setActiveAttempt(true));
       if (selected.name === name) {
+        dispatch(setAttemptsPool({ concurrence: true, name }));
         dispatch(setConcurrence(name));
         dispatch(setActiveAttempt(false));
       } else {
         if (activeAttempt) {
+          dispatch(setAttemptsPool({ concurrence: false, name }));
           dispatch(setActiveAttempt(false));
           dispatch(setSelected({ name: "", container: "" }));
           dispatch(setAttempt());

@@ -6,12 +6,15 @@ import ErrorsPopUp from "../ErrorsPopUp/ErrorsPopUp";
 import Card from "./../Card/Card";
 import "./GameBoard.css";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import StatusModal from "../StatusModal/StatusModal";
 
 const GameBoard = ({ cards }) => {
   const firstShuffledCards = shuffleArray(cards);
   const secondShuffledCards = shuffleArray(cards);
+
+  const [first] = useState(firstShuffledCards);
+  console.log("🚀 ~ file: GameBoard.jsx:17 ~ GameBoard ~ first:", first);
 
   const shuffle = useSelector(state => state.general.shuffle);
 

@@ -22,6 +22,9 @@
     "The player can select the display language, English or Russian.",
     "After each win, the player can save their result in the leaderboard by entering their name (5 characters). The leaderboard ranking is sorted by the minimum number of moves."
   ],
-  "winning": "YOU WON!",
-  "losing": "GAME OVER"
+  "start": "START",
+  "winning": "YOU WON",
+  "losing": "GAME OVER",
+  "great-job": "GREAT JOB",
+  "better-luck": "BETTER LUCK NEXT TIM"
 }
