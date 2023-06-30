@@ -6,7 +6,6 @@ import {
   setActiveAttempt,
   setAttempt,
   setConcurrence,
-  // setGameStatus,
   setSelected,
 } from "../../Redux/reducers/generalSlice";
 

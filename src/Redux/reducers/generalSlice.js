@@ -28,6 +28,7 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
+  
     setDarkMode(state){
       state.darkMode = !state.darkMode;
     },
