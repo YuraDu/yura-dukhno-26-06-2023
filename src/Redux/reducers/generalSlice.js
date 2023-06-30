@@ -11,8 +11,10 @@ const initialState = {
   retry: false,
   start: false,
   attempts: 6,
+  attemptsPool:0,
   activeAttempt:false,
   selected: {name:'', container:''},
+  alert: "",
   pairs: [
     { concurrence: false, cardName: '' },
     { concurrence: false, cardName: '' },
@@ -28,7 +30,12 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
-  
+    setAttemptsPool(state){
+      state.attemptsPool
+    },
+    setAlert(state, action){
+      state.alert = action.payload
+    },
     setDarkMode(state){
       state.darkMode = !state.darkMode;
     },
@@ -86,6 +93,8 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setAttemptsPool,
+  setAlert,
   setDarkMode,
   setPause,
   setGameStatus,

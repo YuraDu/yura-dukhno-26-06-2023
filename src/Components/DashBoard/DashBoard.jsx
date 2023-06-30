@@ -8,6 +8,7 @@ import "./DashBoard.css";
 import StartButton from "../StartButton/StartButton";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setAlert,
   setGameActive,
   setGameStatus,
   setPause,
@@ -46,6 +47,7 @@ export default function DashBoard() {
       case false:
         dispatch(setStart(true));
         dispatch(setGameActive(true));
+        dispatch(setAlert("START!"));
         break;
       case true:
         dispatch(setRetry());
