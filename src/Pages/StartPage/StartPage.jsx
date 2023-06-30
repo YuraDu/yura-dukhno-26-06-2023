@@ -9,9 +9,11 @@ const StartPage = () => {
       <h2 className="rules-heading">{t("goal")}</h2>
       <ul className="rules-list">
         {t("rules", { returnObjects: true }).map((rule, index) => (
-          <li key={index} className="rule-item">
-            {rule}
-          </li>
+          <>
+            <li key={index} className="rule-item">
+              {rule}
+            </li>
+          </>
         ))}
       </ul>
     </div>
