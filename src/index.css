@@ -38,18 +38,20 @@ body {
 .error {
   display: flex;
   justify-content: space-around;
-  padding: 0px 4px;
+  padding: 0.5rem;
+
   background: linear-gradient(to bottom, #e07676 5%, #b95252 100%);
   background-color: #a04e4e;
   border-radius: 4px;
-  border: 1px solid #983838;
   cursor: pointer;
   color: #ffffff;
   font-family: Roboto;
-  font-size: 13px;
+  font-size: 12px;
+
   font-weight: bold;
-  padding: 1px 6px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #954444;
+  /* text-shadow: 0px 1px 0px #954444; */
   align-items: center;
+  min-width: 100px;
+  border: 1px transparent solid;
 }

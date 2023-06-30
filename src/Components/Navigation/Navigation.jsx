@@ -34,7 +34,7 @@ const Navigation = () => {
             <DarkModeIcon onClick={HandleStylesChange} />
           ) : (
             <LightModeIcon
-              style={{ color: "#f2f2f2" }}
+              style={{ color: "#f2f2f2", opacity: 0.6 }}
               onClick={HandleStylesChange}
             />
           )}

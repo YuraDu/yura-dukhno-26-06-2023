@@ -15,7 +15,7 @@ import {
   setShuffle,
   setStart,
 } from "../../Redux/reducers/generalSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function DashBoard() {
   const { t } = useTranslation();
@@ -27,11 +27,18 @@ export default function DashBoard() {
   const falseStart = useSelector(state => state.general.falseStart);
   const attempts = useSelector(state => state.general.attempts);
   const pairs = useSelector(state => state.general.pairs);
+  // const gameActive = useSelector(state => state.general.gameActive);
   const won = pairs.every(pair => pair.concurrence === true);
 
-  if (won) dispatch(setGameStatus("won"));
+  useEffect(() => {
+    if (won) {
+      dispatch(setGameStatus("won"));
+      dispatch(setRetry());
+      dispatch(setGameActive(false));
+    }
 
-  if (!attempts) dispatch(setGameStatus("lost"));
+    if (!attempts) dispatch(setGameStatus("lost"));
+  }, [won, attempts]);
 
   const handleStartGame = () => {
     let setShuffleTimeOut;

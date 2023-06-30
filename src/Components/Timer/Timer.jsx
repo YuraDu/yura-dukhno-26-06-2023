@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   resetState,
   setGameActive,
+  setShuffle,
   setStart,
 } from "../../Redux/reducers/generalSlice";
 
@@ -22,6 +23,11 @@ const Timer = ({ duration, text, setNoTimeLeft }) => {
       timerInterval = setInterval(() => {
         setTimeRemaining(prevTime => prevTime - 1);
       }, 1000);
+    }
+
+    if (!gameActive) {
+      setTimeRemaining(duration);
+      dispatch(setShuffle());
     }
 
     if (timeRemaining < 15) {

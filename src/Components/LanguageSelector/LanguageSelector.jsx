@@ -35,7 +35,11 @@ export default function LanguageSelector() {
             onClick={handleLanguageIconClick}
           >
             <LanguageIcon
-              style={darkMode ? { color: "#fff" } : { color: "#213547" }}
+              style={
+                darkMode
+                  ? { color: "#fff", opacity: 0.6 }
+                  : { color: "#213547" }
+              }
             />
           </IconButton>
         </Tooltip>

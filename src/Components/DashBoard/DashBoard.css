@@ -28,6 +28,7 @@
 .mode__wrapper--dark .dashboard-item {
   background: transparent;
   border: solid 1px;
+  opacity: 0.6;
 }
 
 .mode__wrapper--dark .dashboard-item:hover {

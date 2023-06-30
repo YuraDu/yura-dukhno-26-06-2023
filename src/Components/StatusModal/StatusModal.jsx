@@ -1,8 +1,13 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import {
+  resetState,
+  setGameActive,
+  setGameStatus,
+} from "../../Redux/reducers/generalSlice";
 
 const style = {
   position: "absolute",
@@ -16,14 +21,21 @@ const style = {
 };
 
 export default function StatusModal() {
+  const dispatch = useDispatch();
   const status = useSelector(state => state.general.gameStatus);
 
   const { t } = useTranslation();
 
+  const handleClose = () => {
+    dispatch(setGameStatus(undefined));
+    dispatch(setGameActive(false));
+    dispatch(resetState());
+  };
+
   return (
     <Modal
       open={status || false}
-      //   onClose={handleClose}
+      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
