@@ -12,7 +12,7 @@ const Alert = () => {
   useEffect(() => {
     const alertTimeout = setTimeout(() => {
       dispatch(setAlert(""));
-    }, 10000);
+    }, 2000);
     return () => {
       clearTimeout(alertTimeout);
     };
@@ -20,7 +20,7 @@ const Alert = () => {
 
   return (
     <div
-      style={alert === "" ? { padding: "0" } : {}}
+      style={alert === "" ? { padding: "0" } : { pointerEvents: "none" }}
       className="alert__container"
     >
       <div className={`alert-message ${alert}`}>{t(alert)}</div>

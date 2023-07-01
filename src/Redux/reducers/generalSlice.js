@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  firstRow:[],
+  secondRow:[],
   darkMode: false,
   pause: false,
   gameStatus: undefined,
@@ -30,6 +32,12 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
+    setFirstRow(state, action){
+      state.firstRow = action.payload
+    },
+    setSecondRow(state, action){
+      state.secondRow = action.payload
+    },
     setAttemptsPool(state, actions){
       state.attemptsPool = [...state.attemptsPool, actions.payload];
     },
@@ -93,6 +101,8 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setFirstRow,
+  setSecondRow,
   setAttemptsPool,
   setAlert,
   setDarkMode,

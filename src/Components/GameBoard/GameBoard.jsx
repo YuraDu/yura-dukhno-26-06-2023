@@ -1,26 +1,37 @@
 // import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { shuffleArray } from "../../Services/GameBoardServise";
 import { withConfig } from "../Card/withConfig";
 import ErrorsPopUp from "../ErrorsPopUp/ErrorsPopUp";
 import Card from "./../Card/Card";
 import "./GameBoard.css";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import StatusModal from "../StatusModal/StatusModal";
+import { setFirstRow, setSecondRow } from "../../Redux/reducers/generalSlice";
+// import { useTransition, animated } from "@react-spring/web";
 
 const GameBoard = ({ cards }) => {
-  const firstShuffledCards = shuffleArray(cards);
-  const secondShuffledCards = shuffleArray(cards);
+  const dispatch = useDispatch();
 
-  const [first] = useState(firstShuffledCards);
-  console.log("🚀 ~ file: GameBoard.jsx:17 ~ GameBoard ~ first:", first);
+  const firstShuffledCards = useSelector(state => state.general.firstRow);
+  const secondShuffledCards = useSelector(state => state.general.secondRow);
+
+  const handleShuffle = () => {
+    const newFirstShuffledCards = shuffleArray(cards);
+    const newSecondShuffledCards = shuffleArray(cards);
+
+    dispatch(setFirstRow(newFirstShuffledCards));
+    dispatch(setSecondRow(newSecondShuffledCards));
+  };
 
   const shuffle = useSelector(state => state.general.shuffle);
 
   const UpdatedCard = withConfig(Card);
 
-  useEffect(() => {}, [shuffle]);
+  useEffect(() => {
+    handleShuffle();
+  }, [shuffle]);
 
   return (
     <div style={{ minHeight: "80vh" }}>
@@ -29,19 +40,20 @@ const GameBoard = ({ cards }) => {
         <div className="cards-row left-row">
           {firstShuffledCards.map((card, index) => (
             <UpdatedCard
-              key={`${index}-${card.figure}`}
               card={card}
               container="first"
+              index={index}
+              key={`${index}-${card.figure}`}
             />
           ))}
         </div>
         <div className="cards-row right-row">
           {secondShuffledCards.map((card, index) => (
             <UpdatedCard
-              key={`${index}-${card.figure}`}
               index={index}
               card={card}
               container="second"
+              key={`${index}-${card.figure}`}
             />
           ))}
         </div>
