@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  leaders: [],
   timeRemaining:60,
   firstRow:[],
   secondRow:[],
@@ -33,12 +34,24 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
+    addLeader(state, action){
+      state.leaders = [
+        ...state.leaders,
+        {
+          nickname: action.payload,
+          attempts: state.attempts,
+          time: state.timeRemaining,
+        },
+      ];
+    },
     setNewGame(state) {
       state.timeRemaining = initialState.timeRemaining
       state.error = initialState.error
       state.pairs = initialState.pairs
       state.selected = initialState.selected
       state.attempts = initialState.attempts;
+      state.start = initialState.start;
+      // state.gameActive = initialState.gameActive
     },
     setTimeRemaining(state) {
       state.timeRemaining = state.timeRemaining - 1;
@@ -112,6 +125,7 @@ const generalSlice = createSlice({
 });
 
 export const {
+  addLeader,
   setNewGame,
   resetAttemptsPool,
   setTimeRemaining,

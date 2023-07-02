@@ -3,10 +3,15 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import CloseIcon from "@mui/icons-material/Close";
 import {
+  addLeader,
   setGameActive,
   setGameStatus,
+  setNewGame,
 } from "../../Redux/reducers/generalSlice";
+import { TextField, Button } from "@mui/material";
+import { useState } from "react";
 
 const style = {
   position: "absolute",
@@ -20,6 +25,8 @@ const style = {
 };
 
 export default function StatusModal() {
+  const [leaderNickName, setLeaderNickName] = useState("");
+
   const dispatch = useDispatch();
   const status = useSelector(state => state.general.gameStatus);
 
@@ -28,6 +35,16 @@ export default function StatusModal() {
   const handleClose = () => {
     dispatch(setGameStatus(undefined));
     dispatch(setGameActive(false));
+    dispatch(setNewGame());
+  };
+
+  const handleTextInputChange = event => {
+    setLeaderNickName(event.target.value.slice(0, 5));
+  };
+
+  const handleSaveHighScore = () => {
+    dispatch(addLeader(leaderNickName));
+    handleClose();
   };
 
   return (
@@ -46,6 +63,46 @@ export default function StatusModal() {
         >
           {status === "won" ? t("winning") : t("losing")}
         </Typography>
+        {status === "won" && (
+          <>
+            <Typography
+              sx={{ textAlign: "center" }}
+              id="modal-modal-description"
+              variant="body1"
+              component="p"
+            >
+              {t("saveHighScorePrompt")}
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mt: 2,
+              }}
+            >
+              <TextField
+                value={leaderNickName}
+                onChange={handleTextInputChange}
+                inputProps={{ maxLength: 5 }}
+              />
+              <Button variant="contained" onClick={handleSaveHighScore}>
+                {t("save")}
+              </Button>
+            </Box>
+          </>
+        )}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            cursor: "pointer",
+          }}
+          onClick={handleClose}
+        >
+          <CloseIcon />
+        </Box>
       </Box>
     </Modal>
   );

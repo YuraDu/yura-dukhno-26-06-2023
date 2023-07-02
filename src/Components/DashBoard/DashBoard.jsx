@@ -16,7 +16,7 @@ import {
   setGameStatus,
   setNewGame,
   setPause,
-  setRetry,
+  // setRetry,
   setSecondRow,
   setStart,
   setTimeRemaining,
@@ -66,12 +66,12 @@ export default function DashBoard() {
         dispatch(setStart(true));
         dispatch(setGameActive(true));
         dispatch(setAlert("start"));
-
         break;
       case true:
         dispatch(setNewGame());
         handleShuffle();
         dispatch(setAlert("start"));
+        dispatch(setGameActive(true));
         dispatch(resetAttemptsPool());
         break;
       default:
@@ -119,15 +119,22 @@ export default function DashBoard() {
 
     if (won) {
       dispatch(setGameStatus("won"));
-      dispatch(setRetry());
+      // dispatch(setRetry());
       dispatch(setGameActive(false));
+      clearTimeout(timerTimeOut);
     }
 
-    if (!attempts) dispatch(setGameStatus("lost"));
+    if (!attempts) {
+      clearTimeout(timerTimeOut);
+      dispatch(setGameStatus("lost"));
+    }
   }, [pairs, attempts]);
 
   useEffect(() => {
-    if (timeRemaining === 0) clearTimeout(timerTimeOut);
+    if (timeRemaining === 0) {
+      dispatch(setGameStatus("lost"));
+      clearTimeout(timerTimeOut);
+    }
   }, [timeRemaining]);
 
   return (
