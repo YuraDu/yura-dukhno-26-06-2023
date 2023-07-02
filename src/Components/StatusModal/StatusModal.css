@@ -1,0 +1,20 @@
+.status-modal-button {
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  background: linear-gradient(to bottom, #535a67 5%, #505969 100%);
+  background-color: #535a67;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 12px;
+  padding: 2px 10px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #41454c;
+  align-items: center;
+  min-width: 142px;
+  border: 1px transparent solid;
+  margin-left: 10px;
+}

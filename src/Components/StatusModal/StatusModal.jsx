@@ -10,8 +10,11 @@ import {
   setGameStatus,
   setNewGame,
 } from "../../Redux/reducers/generalSlice";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useState } from "react";
+import { OFF } from "./../../Data/consts";
+
+import "./StatusModal.css";
 
 const style = {
   position: "absolute",
@@ -26,6 +29,7 @@ const style = {
 
 export default function StatusModal() {
   const [leaderNickName, setLeaderNickName] = useState("");
+  const [invalidInput, setInvalidInput] = useState(false);
 
   const dispatch = useDispatch();
   const status = useSelector(state => state.general.gameStatus);
@@ -39,12 +43,21 @@ export default function StatusModal() {
   };
 
   const handleTextInputChange = event => {
-    setLeaderNickName(event.target.value.slice(0, 5));
+    if (event.target.value.length > 5) {
+      setInvalidInput(false);
+    }
+    setLeaderNickName(event.target.value);
   };
 
   const handleSaveHighScore = () => {
-    dispatch(addLeader(leaderNickName));
-    handleClose();
+    // eslint-disable-next-line no-debugger
+    debugger;
+    if (leaderNickName.length === "") {
+      setInvalidInput(true);
+    } else {
+      dispatch(addLeader(leaderNickName));
+      handleClose();
+    }
   };
 
   return (
@@ -71,7 +84,7 @@ export default function StatusModal() {
               variant="body1"
               component="p"
             >
-              {t("saveHighScorePrompt")}
+              SAVE YOUR SCORE
             </Typography>
             <Box
               sx={{
@@ -82,13 +95,22 @@ export default function StatusModal() {
               }}
             >
               <TextField
+                sx={
+                  invalidInput
+                    ? { border: "2px solid red", borderRadius: "4px" }
+                    : { border: "2px solid transparent" }
+                }
                 value={leaderNickName}
                 onChange={handleTextInputChange}
-                inputProps={{ maxLength: 5 }}
+                inputProps={{ maxLength: 6 }}
               />
-              <Button variant="contained" onClick={handleSaveHighScore}>
+              <div
+                style={!invalidInput ? {} : OFF}
+                className={`status-modal-button ${invalidInput ? "" : "error"}`}
+                onClick={handleSaveHighScore}
+              >
                 {t("save")}
-              </Button>
+              </div>
             </Box>
           </>
         )}

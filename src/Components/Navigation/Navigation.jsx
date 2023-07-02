@@ -64,13 +64,25 @@ const Navigation = () => {
         <div
           className={`menu-collapse ${!isMenuOpen ? "collapsed" : "opened"}`}
         >
-          <Link to="/start-page" className="active" onClick={handleMenuToggle}>
+          <Link
+            to="/start-page"
+            className="menu-collapse-link"
+            onClick={handleMenuToggle}
+          >
             {t("main")}
           </Link>
-          <Link to="/game" className="active" onClick={handleMenuToggle}>
+          <Link
+            to="/game"
+            className="menu-collapse-link"
+            onClick={handleMenuToggle}
+          >
             {t("game")}
           </Link>
-          <Link to="/leaders" className="active" onClick={handleMenuToggle}>
+          <Link
+            to="/leaders"
+            className="menu-collapse-link"
+            onClick={handleMenuToggle}
+          >
             {t("leaders")}
           </Link>
         </div>

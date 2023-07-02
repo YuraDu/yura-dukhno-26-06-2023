@@ -37,3 +37,9 @@
   text-wrap: balance;
   opacity: 0.6;
 }
+
+@media (max-width: 768px) {
+  .rules-container {
+    max-width: 560px;
+  }
+}

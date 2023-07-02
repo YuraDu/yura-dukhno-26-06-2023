@@ -27,5 +27,8 @@
   "losing": "GAME OVER",
   "great-job": "GREAT JOB",
   "better-luck": "BETTER LUCK NEXT TIM",
-  "save": "SAVE"
+  "save": "SAVE",
+  "pause-error": "Prohibited to flip the card during game pause!",
+  "flip-back-error": "It is not permitted to flip back guessed cards!",
+  "row-error": "Please select a card from the second row!"
 }

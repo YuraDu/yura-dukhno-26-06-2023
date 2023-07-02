@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 
+import "./LeadersPage.css";
+
 const LeadersPage = () => {
   const leaders = useSelector(state => state.general.leaders);
 
@@ -8,12 +10,14 @@ const LeadersPage = () => {
   );
 
   return (
-    <div>
-      <h2>Leader</h2>
-      <ul>
+    <div className="leaders__container">
+      <h2 className="leaders-header">Leaders:</h2>
+      <ul className="leaders-list">
         {sortedLeaders.map((leader, index) => (
-          <li key={index}>
-            {leader.nickname} - Attempts: {leader.attempts}, Time: {leader.time}
+          <li className="leaders-item" key={index}>
+            {`${leader.nickname.toUpperCase()} - SPENT ${
+              leader.attempts
+            } ATTEMPTS FOR ${leader.time} SECONDS`}
           </li>
         ))}
       </ul>
