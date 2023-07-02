@@ -1,5 +1,6 @@
 import Timer from "./../Timer/Timer";
 import PauseIcon from "@mui/icons-material/Pause";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import Attempts from "./../Attempts/Attempts";
 import { useTranslation } from "react-i18next";
@@ -8,20 +9,28 @@ import "./DashBoard.css";
 import StartButton from "../StartButton/StartButton";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  resetAttemptsPool,
   setAlert,
+  setFirstRow,
   setGameActive,
   setGameStatus,
+  setNewGame,
   setPause,
   setRetry,
-  setShuffle,
+  setSecondRow,
   setStart,
+  setTimeRemaining,
 } from "../../Redux/reducers/generalSlice";
 import { useEffect, useState } from "react";
 import { checkConsecutiveTrue, checkConsecutiveFalse } from "../../Utils";
 
+import cards from "./../../Data/Cards";
+import { shuffleArray } from "../../Services/GameBoardServise";
+
 export default function DashBoard() {
   const { t } = useTranslation();
   const [noTimeLeft, setNoTimeLeft] = useState(false);
+  const [timerTimeOut, setTimerTimeOut] = useState("");
 
   const dispatch = useDispatch();
 
@@ -30,6 +39,67 @@ export default function DashBoard() {
   const attempts = useSelector(state => state.general.attempts);
   const pairs = useSelector(state => state.general.pairs);
   const attemptsPool = useSelector(state => state.general.attemptsPool);
+  const timeRemaining = useSelector(state => state.general.timeRemaining);
+  const pause = useSelector(state => state.general.pause);
+  const gameActive = useSelector(state => state.general.gameActive);
+
+  const handleShuffle = () => {
+    const newFirstShuffledCards = shuffleArray(cards);
+    const newSecondShuffledCards = shuffleArray(cards);
+
+    dispatch(setFirstRow(newFirstShuffledCards));
+    dispatch(setSecondRow(newSecondShuffledCards));
+  };
+
+  const startTimer = () => {
+    let tTimeOut;
+    tTimeOut = setInterval(() => {
+      dispatch(setTimeRemaining());
+    }, 1000);
+    setTimerTimeOut(tTimeOut);
+  };
+
+  const handleStartGame = () => {
+    switch (start) {
+      case false:
+        startTimer();
+        dispatch(setStart(true));
+        dispatch(setGameActive(true));
+        dispatch(setAlert("start"));
+
+        break;
+      case true:
+        dispatch(setNewGame());
+        handleShuffle();
+        dispatch(setAlert("start"));
+        dispatch(resetAttemptsPool());
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handlePause = () => {
+    if (gameActive) {
+      switch (pause) {
+        case true:
+          dispatch(setPause(false));
+          startTimer();
+          break;
+        case false:
+          dispatch(setPause(true));
+          clearInterval(timerTimeOut);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleShuffle();
+    setTimeRemaining(60);
+  }, []);
 
   useEffect(() => {
     switch (true) {
@@ -56,32 +126,13 @@ export default function DashBoard() {
     if (!attempts) dispatch(setGameStatus("lost"));
   }, [pairs, attempts]);
 
-  const handleStartGame = () => {
-    let setShuffleTimeOut;
-    switch (start) {
-      case false:
-        dispatch(setStart(true));
-        dispatch(setGameActive(true));
-        dispatch(setAlert("start"));
-        break;
-      case true:
-        dispatch(setRetry());
-        dispatch(setAlert("start"));
-        setShuffleTimeOut = setTimeout(() => {
-          dispatch(setShuffle());
-        }, 500);
-        return () => clearTimeout(setShuffleTimeOut);
-      default:
-        break;
-    }
-  };
-
-  const handlePause = () => {
-    dispatch(setPause(true));
-  };
+  useEffect(() => {
+    if (timeRemaining === 0) clearTimeout(timerTimeOut);
+  }, [timeRemaining]);
 
   return (
     <div className="dashboard">
+      {/* <div onClick={shuffleTwoCards}>shuffle</div> */}
       <div
         className={`timer__container dashboard-item button ${
           noTimeLeft ? "error" : ""
@@ -92,7 +143,14 @@ export default function DashBoard() {
           text={t("time-left")}
           setNoTimeLeft={setNoTimeLeft}
         />
-        <PauseIcon onClick={handlePause} />
+        {/* <span > */}
+        {pause ? (
+          <PlayArrowIcon onClick={handlePause} />
+        ) : (
+          <PauseIcon onClick={handlePause} />
+        )}
+        {/* <PauseIcon onClick={handlePause} /> */}
+        {/* </span> */}
       </div>
       <div
         onClick={handleStartGame}
@@ -101,7 +159,7 @@ export default function DashBoard() {
         }`}
       >
         <StartButton
-          start={start}
+          // start={start}
           text={!start ? t("start-game") : t("retry")}
         />
       </div>

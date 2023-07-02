@@ -6,3 +6,16 @@ export const shuffleArray = (array) => {
   }
   return shuffledArray;
 }
+
+
+export const filterUniqueObjects = array => {
+  const seen = new Set();
+  return array.filter(obj => {
+    const key = JSON.stringify(obj);
+    if (!seen.has(key)) {
+      seen.add(key);
+      return true;
+    }
+    return false;
+  });
+};

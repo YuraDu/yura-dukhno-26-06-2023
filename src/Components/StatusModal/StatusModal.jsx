@@ -4,7 +4,6 @@ import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
-  resetState,
   setGameActive,
   setGameStatus,
 } from "../../Redux/reducers/generalSlice";
@@ -29,7 +28,6 @@ export default function StatusModal() {
   const handleClose = () => {
     dispatch(setGameStatus(undefined));
     dispatch(setGameActive(false));
-    dispatch(resetState());
   };
 
   return (

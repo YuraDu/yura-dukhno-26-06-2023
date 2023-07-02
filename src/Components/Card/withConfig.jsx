@@ -14,15 +14,13 @@ export const withConfig = Component => {
   // eslint-disable-next-line react/display-name
   return props => {
     const [flipped, setFlipped] = useState(false);
-
     const dispatch = useDispatch();
-
     const active = useSelector(state => state.general.gameActive);
     const selected = useSelector(state => state.general.selected);
     const activeAttempt = useSelector(state => state.general.activeAttempt);
     const retry = useSelector(state => state.general.retry);
     const pairs = useSelector(state => state.general.pairs);
-    // const attemptsPools = useSelector(state => state.general.attemptsPools);
+    // const pause = useSelector(state => state.general.pause);
 
     const handleSelect = (name, container) => {
       // eslint-disable-next-line no-debugger

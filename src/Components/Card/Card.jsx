@@ -8,8 +8,13 @@ const Card = ({ flipped, handleFlip, card, container }) => {
   const dispatch = useDispatch();
   const active = useSelector(state => state.general.gameActive);
   const selected = useSelector(state => state.general.selected);
+  const pause = useSelector(state => state.general.pause);
 
   const handleClick = () => {
+    if (pause) {
+      dispatch(addError("Banned to flip the card during game pause!"));
+      return;
+    }
     if (!active) {
       dispatch(setFalseStart(true));
       const timeout = setTimeout(() => {
@@ -24,7 +29,7 @@ const Card = ({ flipped, handleFlip, card, container }) => {
   return (
     <div onClick={handleClick}>
       <div
-        style={!active || selected.container === container ? OFF : {}}
+        style={pause || !active || selected.container === container ? OFF : {}}
         onClick={() => handleFlip(card.name, container)}
         className={`card ${flipped ? "flipped" : ""}`}
       >

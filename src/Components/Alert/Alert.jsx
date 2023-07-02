@@ -12,7 +12,7 @@ const Alert = () => {
   useEffect(() => {
     const alertTimeout = setTimeout(() => {
       dispatch(setAlert(""));
-    }, 2000);
+    }, 1500);
     return () => {
       clearTimeout(alertTimeout);
     };

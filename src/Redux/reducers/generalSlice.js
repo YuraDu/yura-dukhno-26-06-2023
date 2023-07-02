@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  timeRemaining:60,
   firstRow:[],
   secondRow:[],
   darkMode: false,
@@ -32,23 +33,36 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
-    setFirstRow(state, action){
-      state.firstRow = action.payload
+    setNewGame(state) {
+      state.timeRemaining = initialState.timeRemaining
+      state.error = initialState.error
+      state.pairs = initialState.pairs
+      state.selected = initialState.selected
+      state.attempts = initialState.attempts;
     },
-    setSecondRow(state, action){
-      state.secondRow = action.payload
+    setTimeRemaining(state) {
+      state.timeRemaining = state.timeRemaining - 1;
     },
-    setAttemptsPool(state, actions){
+    setFirstRow(state, action) {
+      state.firstRow = action.payload;
+    },
+    setSecondRow(state, action) {
+      state.secondRow = action.payload;
+    },
+    resetAttemptsPool(state) {
+      state.attemptsPool = [];
+    },
+    setAttemptsPool(state, actions) {
       state.attemptsPool = [...state.attemptsPool, actions.payload];
     },
-    setAlert(state, action){
-      state.alert = action.payload
+    setAlert(state, action) {
+      state.alert = action.payload;
     },
-    setDarkMode(state){
+    setDarkMode(state) {
       state.darkMode = !state.darkMode;
     },
-    setPause(state, action){
-      state.pause = action.payload
+    setPause(state, action) {
+      state.pause = action.payload;
     },
     setGameStatus(state, action) {
       state.gameStatus = action.payload;
@@ -65,10 +79,7 @@ const generalSlice = createSlice({
     setFalseStart(state, action) {
       state.falseStart = action.payload;
     },
-    // eslint-disable-next-line no-unused-vars
-    resetState(state) {
-      return initialState;
-    },
+ 
     setActiveAttempt(state, action) {
       state.activeAttempt = action.payload;
     },
@@ -101,6 +112,11 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setNewGame,
+  resetAttemptsPool,
+  setTimeRemaining,
+  swapInFirstRow,
+  shuffleFirstRow,
   setFirstRow,
   setSecondRow,
   setAttemptsPool,
@@ -112,7 +128,6 @@ export const {
   setRetry,
   addError,
   setFalseStart,
-  resetState,
   setActiveAttempt,
   setGameActive,
   setStart,
