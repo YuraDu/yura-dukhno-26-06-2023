@@ -39,8 +39,8 @@ const generalSlice = createSlice({
         ...state.leaders,
         {
           nickname: action.payload,
-          attempts: state.attempts,
-          time: state.timeRemaining,
+          attempts: initialState.attempts - state.attempts,
+          time: initialState.timeRemaining - state.timeRemaining,
         },
       ];
     },
@@ -51,7 +51,7 @@ const generalSlice = createSlice({
       state.selected = initialState.selected
       state.attempts = initialState.attempts;
       state.start = initialState.start;
-      // state.gameActive = initialState.gameActive
+      state.attemptsPool = initialState.attemptsPool;
     },
     setTimeRemaining(state) {
       state.timeRemaining = state.timeRemaining - 1;
