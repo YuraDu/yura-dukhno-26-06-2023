@@ -28,8 +28,14 @@
   "great-job": "GREAT JOB",
   "better-luck": "BETTER LUCK NEXT TIM",
   "save": "SAVE",
-  "pause-error": "Prohibited to flip the card during game pause!",
-  "flip-back-error": "It is not permitted to flip back guessed cards!",
-  "row-error": "Please select a card from the second row!",
-  "shuffle-mode": "Switch to Shuffle Mode"
+  "pause-error": "PROHIBITED TO FLIP THE CARD DURING GAME PAUSE!",
+  "flip-back-error": "IT IS NOT PERMITTED TO FLIP BACK GUESSED CARDS!",
+  "row-error": "PLEASE SELECT A CARD FROM THE SECOND ROW!",
+  "select": "SELECT LANGUAGE",
+  "shuffle-mode": "SWITCH TO SHUFFLE MODE",
+  "dark-mode": "SWITCH TO DARK MODE",
+  "light-mode": "SWITCH TO LIGHT MODE",
+  "attempts-for": "ATTEMPTS FOR",
+  "seconds": "SECONDS",
+  "spent": "SPENT"
 }

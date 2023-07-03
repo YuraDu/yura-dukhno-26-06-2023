@@ -9,6 +9,8 @@ import LanguageSelector from "./../LanguageSelector/LanguageSelector";
 import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setDarkMode } from "../../Redux/reducers/generalSlice";
+import { Tooltip } from "@mui/material";
+// import { Tooltip } from "flowbite-react";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -31,12 +33,16 @@ const Navigation = () => {
       <nav className="navigation">
         <div className="navigation__buttons">
           {!darkMode ? (
-            <DarkModeIcon onClick={HandleStylesChange} />
+            <Tooltip title={t("dark-mode")}>
+              <DarkModeIcon onClick={HandleStylesChange} />
+            </Tooltip>
           ) : (
-            <LightModeIcon
-              style={{ color: "#f2f2f2", opacity: 0.6 }}
-              onClick={HandleStylesChange}
-            />
+            <Tooltip title={t("light-mode")}>
+              <LightModeIcon
+                style={{ color: "#f2f2f2", opacity: 0.6 }}
+                onClick={HandleStylesChange}
+              />
+            </Tooltip>
           )}
           <LanguageSelector />
         </div>

@@ -1,13 +1,17 @@
 .leaders__container {
   max-width: 740px;
-  margin: 0 auto;
-
+  padding: 20px;
+  margin: 40px auto;
   color: #333;
+  font-size: 12px;
+}
 
-  font-size: 14px;
-
+.leaders {
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  background-color: #ffffff6f;
+  border-radius: 8px;
 }
 
 .mode__wrapper--dark .leaders__container {

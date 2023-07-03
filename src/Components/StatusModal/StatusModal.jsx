@@ -51,7 +51,7 @@ export default function StatusModal() {
 
   const handleSaveHighScore = () => {
     // eslint-disable-next-line no-debugger
-    debugger;
+    // debugger;
     if (leaderNickName.length === "") {
       setInvalidInput(true);
     } else {

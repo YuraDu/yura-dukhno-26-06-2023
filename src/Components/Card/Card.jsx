@@ -21,11 +21,6 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
     to: { x, y },
   });
 
-  // const springs = useSpring({
-  //   from: { y: 0 },
-  //   to: card.name === "Card 5" ? { y: 90 } : { y: 0 },
-  // });
-
   const dispatch = useDispatch();
   const active = useSelector(state => state.general.gameActive);
   const selected = useSelector(state => state.general.selected);

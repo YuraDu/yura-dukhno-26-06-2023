@@ -19,8 +19,8 @@
   margin-left: 10px;
 }
 
-@media (max-width: 540) {
+@media (max-width: 540px) {
   .modal__container {
-    max-width: 100px;
+    max-width: 300px;
   }
 }

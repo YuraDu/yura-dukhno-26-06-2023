@@ -29,7 +29,7 @@ export default function LanguageSelector() {
   return (
     <div className="language-selector">
       <Toolbar className="toolbar">
-        <Tooltip title="Select language">
+        <Tooltip title={t("select")}>
           <IconButton
             style={{ padding: "0" }}
             onClick={handleLanguageIconClick}
