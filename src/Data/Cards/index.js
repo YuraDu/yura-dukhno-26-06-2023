@@ -18,7 +18,7 @@
 const imageUrls = [
   "https://imgtr.ee/images/2023/07/03/e3010d9b18b258cbdfb364d1814d85d4.png",
   "https://imgtr.ee/images/2023/07/03/7c9808a1a9e19c656a3be7040bd776bf.png",
-  "hhttps://imgtr.ee/images/2023/07/03/80f4ea65f280b10c9b188f2fc93db733.png",
+  "https://imgtr.ee/images/2023/07/03/80f4ea65f280b10c9b188f2fc93db733.png",
   "https://imgtr.ee/images/2023/07/03/761b60eb40bc4d20e852eeb85452c34e.png",
   "https://imgtr.ee/images/2023/07/03/6bdfe0550b6bc6d8b909fb1ce42e30a3.png",
   "https://imgtr.ee/images/2023/07/03/a4af16b6fed32980cdb7a25169845aa5.png",
