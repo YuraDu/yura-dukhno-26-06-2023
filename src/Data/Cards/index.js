@@ -7,7 +7,7 @@ for (let i = 0; i < 5; i++) {
 
   figures.push({
     name: `Card ${i + 1}`,
-    image: `/src/assets/images/${randomImage}.png`,
+    image: `/assets/images/${randomImage}.png`,
   });
 
   availableImages.splice(randomIndex, 1);
