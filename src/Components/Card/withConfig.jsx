@@ -22,17 +22,19 @@ export const withConfig = Component => {
     const pairs = useSelector(state => state.general.pairs);
     // const pause = useSelector(state => state.general.pause);
 
-    const handleSelect = (name, container) => {
+    const handleSelect = (name, container, index) => {
       // eslint-disable-next-line no-debugger
       setFlipped(!flipped);
       if (!selected.name) dispatch(setActiveAttempt(true));
       if (selected.name === name) {
-        dispatch(setAttemptsPool({ concurrence: true, name }));
+        dispatch(
+          setAttemptsPool({ concurrence: true, name, index, container })
+        );
         dispatch(setConcurrence(name));
         dispatch(setActiveAttempt(false));
       } else {
         if (activeAttempt) {
-          dispatch(setAttemptsPool({ concurrence: false, name }));
+          dispatch(setAttemptsPool({ concurrence: false, name, index }));
           dispatch(setActiveAttempt(false));
           dispatch(setSelected({ name: "", container: "" }));
           dispatch(setAttempt());

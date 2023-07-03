@@ -106,7 +106,9 @@ export default function StatusModal() {
               />
               <div
                 style={!invalidInput ? {} : OFF}
-                className={`status-modal-button ${invalidInput ? "" : "error"}`}
+                className={`status-modal-button ${
+                  !invalidInput ? "" : "error"
+                }`}
                 onClick={handleSaveHighScore}
               >
                 {t("save")}

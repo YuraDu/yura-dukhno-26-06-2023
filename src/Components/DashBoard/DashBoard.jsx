@@ -4,7 +4,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import Attempts from "./../Attempts/Attempts";
 import { useTranslation } from "react-i18next";
-
+import Switch from "@mui/material/Switch";
 import "./DashBoard.css";
 import StartButton from "../StartButton/StartButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,16 +16,21 @@ import {
   setGameStatus,
   setNewGame,
   setPause,
-  // setRetry,
   setSecondRow,
+  setShuffleCards,
+  setShuffleMode,
   setStart,
   setTimeRemaining,
 } from "../../Redux/reducers/generalSlice";
 import { useEffect, useState } from "react";
-import { checkConsecutiveTrue, checkConsecutiveFalse } from "../../Utils";
+import { checkConsecutive } from "../../Utils";
 
 import cards from "./../../Data/Cards";
-import { shuffleArray } from "../../Services/GameBoardServise";
+import {
+  findCardsToShuffle,
+  shuffleArray,
+} from "../../Services/GameBoardServise";
+import { Tooltip } from "@mui/material";
 
 export default function DashBoard() {
   const { t } = useTranslation();
@@ -42,6 +47,10 @@ export default function DashBoard() {
   const timeRemaining = useSelector(state => state.general.timeRemaining);
   const pause = useSelector(state => state.general.pause);
   const gameActive = useSelector(state => state.general.gameActive);
+  const firstRow = useSelector(state => state.general.firstRow);
+  const secondRow = useSelector(state => state.general.secondRow);
+  const swapped = useSelector(state => state.general.swapped);
+  const shuffle = useSelector(state => state.general.shuffle);
 
   const handleShuffle = () => {
     const newFirstShuffledCards = shuffleArray(cards);
@@ -102,11 +111,24 @@ export default function DashBoard() {
   }, []);
 
   useEffect(() => {
+    const trueGuessedCards = pairs.filter(pair => pair.concurrence === true);
     switch (true) {
-      case checkConsecutiveTrue(attemptsPool):
+      case checkConsecutive(attemptsPool, true, 2):
+        if (
+          shuffle &&
+          firstRow?.length > 0 &&
+          !swapped &&
+          trueGuessedCards?.length < 4
+        ) {
+          const firstCards = findCardsToShuffle(attemptsPool, firstRow);
+          const secCards = findCardsToShuffle(attemptsPool, secondRow);
+          dispatch(setShuffleCards({ first: firstCards, second: secCards }));
+        }
+        break;
+      case checkConsecutive(attemptsPool, true, 3):
         dispatch(setAlert(t("great-job")));
         break;
-      case checkConsecutiveFalse(attemptsPool):
+      case checkConsecutive(attemptsPool, false, 3):
         dispatch(setAlert(t("better-luck")));
         break;
       default:
@@ -119,7 +141,6 @@ export default function DashBoard() {
 
     if (won) {
       dispatch(setGameStatus("won"));
-      // dispatch(setRetry());
       dispatch(setGameActive(false));
       clearTimeout(timerTimeOut);
     }
@@ -139,9 +160,8 @@ export default function DashBoard() {
 
   return (
     <div className="dashboard">
-      {/* <div onClick={shuffleTwoCards}>shuffle</div> */}
       <div
-        className={`timer__container dashboard-item button ${
+        className={`timer__container dashboard-item ${
           noTimeLeft ? "error" : ""
         }`}
       >
@@ -150,14 +170,14 @@ export default function DashBoard() {
           text={t("time-left")}
           setNoTimeLeft={setNoTimeLeft}
         />
-        {/* <span > */}
         {pause ? (
           <PlayArrowIcon onClick={handlePause} />
         ) : (
           <PauseIcon onClick={handlePause} />
         )}
-        {/* <PauseIcon onClick={handlePause} /> */}
-        {/* </span> */}
+        <Tooltip title={t("shuffle-mode")}>
+          <Switch onClick={() => dispatch(setShuffleMode())} />
+        </Tooltip>
       </div>
       <div
         onClick={handleStartGame}
@@ -165,10 +185,7 @@ export default function DashBoard() {
           falseStart ? "error" : ""
         }`}
       >
-        <StartButton
-          // start={start}
-          text={!start ? t("start-game") : t("retry")}
-        />
+        <StartButton text={!start ? t("start-game") : t("retry")} />
       </div>
       <div
         className={`attempts__container dashboard-item ${

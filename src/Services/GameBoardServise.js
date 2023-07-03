@@ -7,15 +7,36 @@ export const shuffleArray = (array) => {
   return shuffledArray;
 }
 
-
-export const filterUniqueObjects = array => {
-  const seen = new Set();
-  return array.filter(obj => {
-    const key = JSON.stringify(obj);
-    if (!seen.has(key)) {
-      seen.add(key);
-      return true;
-    }
-    return false;
+export const findCardsToShuffle = (attemptsPool, cards) => {
+  const filteredAttempts = attemptsPool.filter(
+    item => item.concurrence === true
+  );
+  const cardsToShuffle = cards.filter(card => {
+    return !filteredAttempts.some(attempt => areAttemptsEqual(attempt, card));
   });
+
+  const randomIndices = [];
+  while (randomIndices.length < 2) {
+    const randomIndex = Math.floor(Math.random() * cardsToShuffle.length);
+    if (!randomIndices.includes(randomIndex)) {
+      randomIndices.push(randomIndex);
+    }
+  }
+
+  const randomCards = randomIndices.map(index => ({
+    card: cardsToShuffle[index],
+    originalIndex: cards.indexOf(cardsToShuffle[index]),
+  }));
+
+  return randomCards;
 };
+
+const areAttemptsEqual = (attempt, card) => {
+  return attempt.name === card.name;
+};
+
+export const isTruePair = (array, card) => {
+  return array?.some(
+    item => item.name === card.name && item.concurrence === true
+  );
+}

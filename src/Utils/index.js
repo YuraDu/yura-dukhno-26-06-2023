@@ -33,3 +33,21 @@ export const checkConsecutiveFalse = (pairs) => {
 
   return false;
 }
+
+export const checkConsecutive = (pairs,bool,number) => {
+  let consecutiveCount = 0;
+
+  for (let i = 0; i < pairs.length; i++) {
+    if (pairs[i].concurrence === bool) {
+      consecutiveCount++;
+
+      if (consecutiveCount === number) {
+        return true;
+      }
+    } else {
+      consecutiveCount = 0;
+    }
+  }
+
+  return false;
+};

@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  shuffleCards:[],
+  swapped:false,
+  shuffleMode: false,
   leaders: [],
   timeRemaining:60,
   firstRow:[],
@@ -34,7 +37,16 @@ const generalSlice = createSlice({
   name: "general",
   initialState,
   reducers: {
-    addLeader(state, action){
+    setSwapped(state, action){
+      state.swapped = action.payload
+    },
+    setShuffleCards(state, action){
+      state.shuffleCards = action.payload
+    },
+    setShuffleMode(state){
+      state.shuffle = !state.shuffle;
+    },
+    addLeader(state, action) {
       state.leaders = [
         ...state.leaders,
         {
@@ -45,10 +57,10 @@ const generalSlice = createSlice({
       ];
     },
     setNewGame(state) {
-      state.timeRemaining = initialState.timeRemaining
-      state.error = initialState.error
-      state.pairs = initialState.pairs
-      state.selected = initialState.selected
+      state.timeRemaining = initialState.timeRemaining;
+      state.error = initialState.error;
+      state.pairs = initialState.pairs;
+      state.selected = initialState.selected;
       state.attempts = initialState.attempts;
       state.start = initialState.start;
       state.attemptsPool = initialState.attemptsPool;
@@ -92,7 +104,7 @@ const generalSlice = createSlice({
     setFalseStart(state, action) {
       state.falseStart = action.payload;
     },
- 
+
     setActiveAttempt(state, action) {
       state.activeAttempt = action.payload;
     },
@@ -125,6 +137,9 @@ const generalSlice = createSlice({
 });
 
 export const {
+  setSwapped,
+  setShuffleCards,
+  setShuffleMode,
   addLeader,
   setNewGame,
   resetAttemptsPool,
