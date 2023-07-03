@@ -61,13 +61,8 @@ export default function StatusModal() {
   };
 
   return (
-    <Modal
-      open={status || false}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={style}>
+    <Modal open={status || false} onClose={handleClose}>
+      <Box className="modal__container" sx={style}>
         <Typography
           sx={{ textAlign: "center" }}
           id="modal-modal-title"

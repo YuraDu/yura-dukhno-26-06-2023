@@ -11,14 +11,20 @@ import { isTruePair } from "../../Services/GameBoardServise";
 
 const Card = ({ flipped, handleFlip, card, container, index }) => {
   const [x, setX] = useState();
+  const [y, setY] = useState();
   const [percents, setPercents] = useState();
 
   const { t } = useTranslation();
 
   const springs = useSpring({
-    from: { x: 0 },
-    to: { x },
+    from: { x: 0, y: 0 },
+    to: { x, y },
   });
+
+  // const springs = useSpring({
+  //   from: { y: 0 },
+  //   to: card.name === "Card 5" ? { y: 90 } : { y: 0 },
+  // });
 
   const dispatch = useDispatch();
   const active = useSelector(state => state.general.gameActive);
@@ -35,10 +41,22 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
 
   useEffect(() => {
     if (thisCard) {
-      if (thisCard.originalIndex < secondCard.originalIndex) {
-        setX(percents * (secondCard.originalIndex - thisCard.originalIndex));
-      } else if (thisCard.originalIndex > secondCard.originalIndex) {
-        setX(-(percents * (thisCard.originalIndex - secondCard.originalIndex)));
+      if (window.innerWidth > 540) {
+        if (thisCard.originalIndex < secondCard.originalIndex) {
+          setX(percents * (secondCard.originalIndex - thisCard.originalIndex));
+        } else if (thisCard.originalIndex > secondCard.originalIndex) {
+          setX(
+            -(percents * (thisCard.originalIndex - secondCard.originalIndex))
+          );
+        }
+      } else {
+        if (thisCard.originalIndex < secondCard.originalIndex) {
+          setY(percents * (secondCard.originalIndex - thisCard.originalIndex));
+        } else if (thisCard.originalIndex > secondCard.originalIndex) {
+          setY(
+            -(percents * (thisCard.originalIndex - secondCard.originalIndex))
+          );
+        }
       }
     }
   }, [shuffleCards]);
@@ -64,6 +82,9 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
 
   useEffect(() => {
     switch (true) {
+      case window.innerWidth < 541:
+        setPercents(90);
+        break;
       case window.innerWidth < 769:
         setPercents(110);
         break;

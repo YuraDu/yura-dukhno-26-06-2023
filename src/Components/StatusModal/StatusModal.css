@@ -18,3 +18,9 @@
   border: 1px transparent solid;
   margin-left: 10px;
 }
+
+@media (max-width: 540) {
+  .modal__container {
+    max-width: 100px;
+  }
+}
