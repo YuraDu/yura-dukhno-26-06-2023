@@ -16,7 +16,7 @@ const ErrorsPopUp = () => {
 
   return (
     <div className="errors__container">
-      {error && <div className="error disappear">{error}</div>}
+      {error && <div className="error">{error}</div>}
     </div>
   );
 };

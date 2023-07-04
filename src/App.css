@@ -11,7 +11,7 @@
 }
 .mode__wrapper--light {
   height: 100vh;
-
+  overflow: hidden;
   background-color: #f2f2f2;
 }
 

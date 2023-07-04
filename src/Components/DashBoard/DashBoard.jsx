@@ -154,6 +154,7 @@ export default function DashBoard() {
   useEffect(() => {
     if (timeRemaining === 0) {
       dispatch(setGameStatus("lost"));
+      dispatch(setNewGame());
       clearTimeout(timerTimeOut);
     }
   }, [timeRemaining]);
