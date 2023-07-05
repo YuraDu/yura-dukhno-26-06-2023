@@ -1,9 +1,10 @@
 .errors__container {
   position: absolute;
-  /* bottom: -25%; */
+  bottom: -15%;
   margin: 10px auto;
   width: 300px;
-  left: 40%;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
 }
 
 .disappear {
