@@ -26,10 +26,13 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
   const selected = useSelector(state => state.general.selected);
   const pause = useSelector(state => state.general.pause);
   const attemptsPool = useSelector(state => state.general.attemptsPool);
+
   const shuffleCards = useSelector(state => state.general.shuffleCards);
+
   const thisCard = shuffleCards[container]?.find(
     item => item["originalIndex"] === index
   );
+  console.log("🚀 ~ file: Card.jsx:35 ~ Card ~ thisCard:", thisCard);
   const secondCard = shuffleCards[container]?.find(
     item => item["originalIndex"] !== index
   );

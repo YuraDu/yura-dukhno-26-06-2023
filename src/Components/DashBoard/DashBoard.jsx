@@ -72,9 +72,11 @@ export default function DashBoard() {
     switch (start) {
       case false:
         startTimer();
+        dispatch(setNewGame());
         dispatch(setStart(true));
         dispatch(setGameActive(true));
         dispatch(setAlert("start"));
+        handleShuffle();
         break;
       case true:
         dispatch(setNewGame());
@@ -106,7 +108,7 @@ export default function DashBoard() {
   };
 
   useEffect(() => {
-    handleShuffle();
+    // handleShuffle();
     setTimeRemaining(60);
   }, []);
 
