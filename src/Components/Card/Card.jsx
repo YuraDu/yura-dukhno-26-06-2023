@@ -10,9 +10,10 @@ import { useEffect, useState } from "react";
 import { isTruePair } from "../../Services/GameBoardServise";
 
 const Card = ({ flipped, handleFlip, card, container, index }) => {
-  const [x, setX] = useState();
-  const [y, setY] = useState();
-  const [percents, setPercents] = useState();
+  const [x, setX] = useState("");
+  const [y, setY] = useState("");
+  const [percents, setPercents] = useState("");
+  const [blocked, setBlocked] = useState(false);
 
   const { t } = useTranslation();
 
@@ -26,16 +27,18 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
   const selected = useSelector(state => state.general.selected);
   const pause = useSelector(state => state.general.pause);
   const attemptsPool = useSelector(state => state.general.attemptsPool);
+  // const pairs = useSelector(state => state.general.pairs);
 
   const shuffleCards = useSelector(state => state.general.shuffleCards);
 
   const thisCard = shuffleCards[container]?.find(
     item => item["originalIndex"] === index
   );
-  console.log("🚀 ~ file: Card.jsx:35 ~ Card ~ thisCard:", thisCard);
   const secondCard = shuffleCards[container]?.find(
     item => item["originalIndex"] !== index
   );
+
+  // useEffect(() => {}, [pairs]);
 
   useEffect(() => {
     if (thisCard) {
@@ -62,6 +65,7 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
   const handleClick = () => {
     if (isTruePair(attemptsPool, card.name)) {
       dispatch(addError(t("flip-back-error")));
+      setBlocked(true);
     }
     if (pause) {
       dispatch(addError(t("pause-error")));
@@ -77,6 +81,24 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
       dispatch(addError(t("row-error")));
     }
   };
+
+  useEffect(() => {
+    // console.log(
+    //   "🚀 ~ file: Card.jsx:88 ~ useEffect ~ attemptsPool:",
+    //   card,
+    //   attemptsPool,
+    //   attemptsPool?.some(
+    //     item => item.name === card.name && item.concurrence === true
+    //   )
+    // );
+    if (
+      attemptsPool?.some(
+        item => item.name === card.name && item.concurrence === true
+      )
+    ) {
+      setBlocked(true);
+    }
+  }, [attemptsPool]);
 
   useEffect(() => {
     switch (true) {
@@ -96,6 +118,7 @@ const Card = ({ flipped, handleFlip, card, container, index }) => {
     <animated.div onClick={handleClick} style={{ ...springs }}>
       <div
         style={
+          blocked ||
           isTruePair(attemptsPool, card.name) ||
           pause ||
           !active ||

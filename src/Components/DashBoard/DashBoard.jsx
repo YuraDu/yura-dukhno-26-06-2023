@@ -108,7 +108,7 @@ export default function DashBoard() {
   };
 
   useEffect(() => {
-    // handleShuffle();
+    handleShuffle();
     setTimeRemaining(60);
   }, []);
 
